@@ -12,7 +12,7 @@ export function Header() {
 				marginTop: "3rem",
 				paddingTop: "3rem",
 				paddingBottom: "3rem",
-				background: "#26d3bc",
+				background: "#ffdb89",
 			}}
 		>
 			<h1>Welcome to Sefaudi Store!</h1>
