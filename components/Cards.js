@@ -1,12 +1,14 @@
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Row, Col } from "react-bootstrap";
 import { CarouselComponent, Context } from "./index";
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 import { useState, useContext } from "react";
+import { MdOutlineAdd } from "react-icons/md";
+import { HiOutlineMinusSm } from "react-icons/hi";
 
 export function Cards(props) {
 	const [descEnlarge, setDescEnlarge] = useState(false);
 
-	const [pieceNumber, setPieceNumber] = useState(0);
+	const [pieceNumber, setPieceNumber] = useState(1);
 
 	const { basket, setBasket } = useContext(Context);
 	return (
@@ -31,7 +33,9 @@ export function Cards(props) {
 			{props.desc ? (
 				props.desc.map((item, i) =>
 					descEnlarge || i <= 2 ? (
-						<Card.Text className="align-self-stretch">{item}</Card.Text>
+						<Card.Text key={i} className="align-self-stretch">
+							{item}
+						</Card.Text>
 					) : (
 						<></>
 					)
@@ -41,11 +45,13 @@ export function Cards(props) {
 			)}
 			{props.desc.length > 3 && (
 				<Button
+					name="btn_enlarge_desc"
 					className="p-1  align-self-stretch"
 					variant="outline-primary"
 					onClick={() => {
 						setDescEnlarge(!descEnlarge);
 					}}
+					aria-label={descEnlarge ? "desc reduce" : "desc enlarge"}
 				>
 					{descEnlarge ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
 				</Button>
@@ -55,27 +61,65 @@ export function Cards(props) {
 				className="mt-auto p-1 align-self-stretch"
 				style={{ fontSize: 20, fontWeight: "bold", marginTop: 20 }}
 			>
-				{props.price || "???"} $ / 1{" "}
+				${props.price || "???"} / 1{" "}
 				{props.title === "Repair Kit for Enders Stoves" ? "set" : "piece"}
 			</Card.Text>
 
 			{true ? (
 				<>
-					<input
-						onKeyPress={(event) => {
-							if (!/[0-9]/.test(event.key)) {
-								event.preventDefault();
-							}
-						}}
-						onChange={(e) => {
-							setPieceNumber(parseInt(e.target.value || 0));
-							// console.log(e.target.value);
-						}}
-						placeholder="Write number"
-						value={pieceNumber}
-						className="align-self-stretch text-center"
-					/>
+					<div
+						className="d-flex align-self-stretch align-items-center justify-content-around"
+						style={{ marginBottom: "1rem" }}
+					>
+						<div>
+							<Button
+								name="btn_card_item_minus_one"
+								className=" btn-block align-self-stretch"
+								variant="outline-primary"
+								disabled={pieceNumber <= 0}
+								onClick={() => {
+									if (pieceNumber > 0) {
+										setPieceNumber(pieceNumber - 1);
+									}
+								}}
+								aria-label="item decrease"
+							>
+								<HiOutlineMinusSm />
+							</Button>
+						</div>
+						<div
+							className=" align-items-center"
+							style={{ paddingTop: "0.2rem" }}
+						>
+							<input
+								onKeyPress={(event) => {
+									if (!/[0-9]/.test(event.key)) {
+										event.preventDefault();
+									}
+								}}
+								onChange={(e) => {
+									setPieceNumber(parseInt(e.target.value || 0));
+									// console.log(e.target.value);
+								}}
+								placeholder="Write number"
+								value={pieceNumber}
+								className="align-self-stretch text-center align-items-center align-self-center"
+							/>
+						</div>
+						<div>
+							<Button
+								name="btn_card_item_plus_one"
+								className=" btn-block align-self-stretch"
+								variant="outline-primary"
+								onClick={() => setPieceNumber(pieceNumber + 1)}
+								aria-label="item add"
+							>
+								<MdOutlineAdd />
+							</Button>
+						</div>
+					</div>
 					<Button
+						name="btn_basket_add"
 						className=" btn-block align-self-stretch"
 						onClick={() => {
 							// console.log("added " + props.title + " to card");

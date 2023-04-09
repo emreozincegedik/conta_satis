@@ -16,8 +16,8 @@ export function ModalComponent(props) {
 		setIndex(selectedIndex);
 	};
 	useEffect(() => {
-		setIndex(props.index);
-	}, []);
+		setIndex(props.activeIndex);
+	}, [props.activeIndex]);
 
 	return (
 		<>
@@ -55,7 +55,11 @@ export function ModalComponent(props) {
 						</Carousel.Item>
 					))}
 				</Carousel>
-				<Button variant="secondary" onClick={props.handleClose}>
+				<Button
+					variant="secondary"
+					onClick={props.handleClose}
+					name="btn_modal_close"
+				>
 					Close
 				</Button>
 			</Modal>

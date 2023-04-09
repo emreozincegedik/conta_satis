@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Row } from "react-bootstrap";
 import { Cards } from "./index";
-import items from "./items.json";
 
 // import fs from "fs";
 // var fs = require("fs");
 
-export function ItemHolder() {
-	const [contalar, setContalar] = useState(items);
+export function ItemHolder({ items }) {
 	return (
 		<Row
 			className="row d-flex justify-content-center"
 			style={{ marginTop: "0rem" }}
 		>
-			{contalar.map((conta, i) => (
+			{items.map((conta, i) => (
 				<Cards
 					key={i}
 					id={i}

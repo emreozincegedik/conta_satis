@@ -28,21 +28,27 @@ export function CarouselComponent(props) {
 			prevIcon={FcPrevious}
 		>
 			<Carousel.Item>
-				<img
+				<Image
+					width={350}
+					height={350}
 					className="d-block w-100"
 					src="http://via.placeholder.com/640x360"
 					alt="First slide"
 				/>
 			</Carousel.Item>
 			<Carousel.Item>
-				<img
+				<Image
+					width={350}
+					height={350}
 					className="d-block w-100"
 					src="http://via.placeholder.com/640x360"
 					alt="Second slide"
 				/>
 			</Carousel.Item>
 			<Carousel.Item>
-				<img
+				<Image
+					width={350}
+					height={350}
 					className="d-block w-100"
 					src="http://via.placeholder.com/640x360"
 					alt="Third slide"

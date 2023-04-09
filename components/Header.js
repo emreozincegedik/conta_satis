@@ -25,12 +25,6 @@ export function Header() {
 				<h4> Leather cups are produced by myself.</h4>
 				<br />
 				<h4>
-					<span style={{ textDecoration: "underline" }}>Postage</span>:
-					International small packet with tracking number
-					<li>$6,5 Europe (including UK)</li> <li> $8,5 Rest of the world</li>
-				</h4>
-				<br />
-				<h4>
 					After you see below listings and decide what items to buy, please
 					contact me via below options:
 				</h4>
@@ -40,6 +34,7 @@ export function Header() {
 					<a
 						style={{ color: "#25D366" }}
 						target="_blank"
+						rel="noreferrer"
 						href="http://wa.me/905322256457/?text=Hello Sefa"
 					>
 						WhatsApp +90 532 225 64 57 <FaWhatsapp />
@@ -48,11 +43,21 @@ export function Header() {
 				<h4>
 					via Email{" "}
 					<span style={{ color: "#c71610" }}>
-						ozincegedik@gmail.com <SiGmail />
+						ozincegedik@gmail.com {/* <SiGmail /> */}
 					</span>
 				</h4>
 
-				<h3>Only bank transfers are accepted.</h3>
+				{/* <h4 style={{ textDecoration: "underline" }}>
+					Only bank transfers are accepted.
+				</h4> */}
+				<br />
+				<h4>
+					<span style={{ textDecoration: "underline" }}>Postage</span>:
+					International small packet with tracking number
+					<ul>
+						<li>$6,5 Europe (including UK)</li> <li> $8,5 Rest of the world</li>
+					</ul>
+				</h4>
 			</div>
 		</div>
 	);

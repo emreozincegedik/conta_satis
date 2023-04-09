@@ -38,6 +38,7 @@ export function BasketItem(props) {
 					<Row className="d-flex justify-content-center">
 						<Col>
 							<Button
+								name="btn_basket_item_minus_one"
 								variant="outline-primary"
 								onClick={() => {
 									if (props.count === 1) {
@@ -66,6 +67,7 @@ export function BasketItem(props) {
 						</Col>
 						<Col>
 							<Button
+								name="btn_basket_item_plus_one"
 								variant="outline-primary"
 								onClick={() =>
 									setBasket(
@@ -87,9 +89,10 @@ export function BasketItem(props) {
 				<Col className="d-flex flex-column justify-content-between">
 					<div className="text-center align-self-center ">Total</div>
 					<div className="text-center align-self-center ">
-						{Math.round(props.count * props.price * 10) / 10} $
+						${Math.round(props.count * props.price * 10) / 10}
 					</div>
 					<Button
+						name="btn_basket_item_delete"
 						variant="outline-danger d-row d-flex justify-content-center "
 						style={{}}
 						className="align-self-stretch"

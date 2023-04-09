@@ -23,6 +23,7 @@ export function Basket(props) {
 		<>
 			{basket.length !== 0 && (
 				<Button
+					name="btn_basket_show"
 					variant="primary btn-circle row d-flex justify-content-center"
 					onClick={() => {
 						setShowBasket(true);
@@ -52,6 +53,7 @@ export function Basket(props) {
 				<Offcanvas.Header closeButton>
 					<Offcanvas.Title>My Basket</Offcanvas.Title>
 					<Button
+						name="btn_clear_basket"
 						variant="outline-danger"
 						className="text-center align-self-center"
 						onClick={() => {
@@ -85,25 +87,25 @@ export function Basket(props) {
 						<Dropdown.Menu>
 							<Dropdown.Item
 								onClick={() => {
-									setRegionTitle("Europe (including UK) 6.5$");
+									setRegionTitle("Europe (including UK) $6.5");
 									setRegionPrice(6.5);
 								}}
 							>
-								Europe (including UK) 6.5$
+								Europe (including UK) $6.5
 							</Dropdown.Item>
 							<Dropdown.Item
 								onClick={() => {
-									setRegionTitle("Rest of the world 8.5$");
+									setRegionTitle("Rest of the world $8.5");
 									setRegionPrice(8.5);
 								}}
 							>
-								Rest of the world 8.5$
+								Rest of the world $8.5
 							</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
 					<div className=" align-self-stretch p-2 d-flex flex-column">
 						<h4 className="align-self-stretch">
-							Total:{" "}
+							Total:{" $"}
 							{basket
 								.reduce(
 									(total, currentItem) =>
@@ -111,10 +113,10 @@ export function Basket(props) {
 									0
 								)
 								.toFixed(1)}{" "}
-							$ {regionPrice !== null && "+ " + regionPrice + " $ (package) "}
+							{regionPrice !== null && "+ $" + regionPrice + " (package) "}
 						</h4>
 						<h4>
-							={" "}
+							={" $"}
 							{parseFloat(
 								parseFloat(
 									basket
@@ -126,9 +128,9 @@ export function Basket(props) {
 										.toFixed(1)
 								) + regionPrice
 							).toFixed(1)}
-							{" $"}
 						</h4>
 						<Button
+							name="btn_send_msg_whatsapp"
 							className="btn btn-primary align-self-stretch"
 							onClick={() => {
 								let msg =
@@ -136,19 +138,42 @@ export function Basket(props) {
 								for (let i = 0; i < basket.length; i++) {
 									const item = basket[i];
 									msg +=
+										"\n-- " +
 										item.count +
 										"x " +
 										item.title +
-										(i !== basket.length - 1 ? ", " : ". ");
+										" $" +
+										parseFloat(item.count * item.price).toFixed(1);
 								}
-								msg +=
-									"My location is " +
-									(regionTitle.startsWith("E")
-										? "Europe"
-										: "Rest of the world");
-								window.open("http://wa.me/905322256457/?text=" + msg);
 
-								setWhatsappmessage(msg);
+								msg +=
+									"\nMy location is " +
+									(regionTitle.startsWith("E")
+										? "Europe + ($6.5)"
+										: "Rest of the world ($8.5)");
+								msg +=
+									"\nTotal: " +
+									"$" +
+									parseFloat(
+										parseFloat(
+											basket
+												.reduce(
+													(total, currentItem) =>
+														(total =
+															total + currentItem.price * currentItem.count),
+													0
+												)
+												.toFixed(1)
+										) + regionPrice
+									).toFixed(1);
+								// console.log(
+								// 	"http://wa.me/905322256457/?text=" + encodeURIComponent(msg)
+								// );
+								window.open(
+									"http://wa.me/905322256457/?text=" + encodeURIComponent(msg)
+								);
+
+								// setWhatsappmessage(msg);
 								// console.log(msg);
 							}}
 							// target="_blank"
