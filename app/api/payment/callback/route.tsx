@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
   // Bu işlemi yapmazsanız maddi zarara uğramanız olasıdır.
   const JOIN_API_KEY = "552ca49562ad4e888a8050b2e829513d";
   const title = "paytr_token: " + paytr_token;
-  const text = "callback: " + callback;
+  const text = "callback: " + JSON.stringify(callback);
   const deviceId = "77ddb3e749424e2095f56e47e20ea373";
   const url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
   await fetch(url);
