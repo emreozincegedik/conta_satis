@@ -1,5 +1,6 @@
 [
 	{
+		"id": 1,
 		"title": "Pump Cup Leathers for 2 Pint Stoves",
 		"desc": [
 			"Excellent pump cup leathers for most of pressure stoves  and lanterns.",
@@ -10,9 +11,16 @@
 		],
 		"price": 2,
 		"imgPath": "/images/Pump Cup Leathers for 2 Pint Stoves",
-		"images": ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg"]
+		"images": [
+			"1.jpeg",
+			"2.jpeg",
+			"3.jpeg",
+			"4.jpeg",
+			"5.jpeg"
+		]
 	},
 	{
+		"id": 2,
 		"title": "Pump Cup Leathers for 1 Pint Stoves",
 		"desc": [
 			"Excellent pump cup leathers for most of 1 pint stoves. ",
@@ -23,9 +31,16 @@
 		],
 		"price": 2,
 		"imgPath": "/images/Pump Cup Leathers for 1 Pint Stoves",
-		"images": ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg"]
+		"images": [
+			"1.jpeg",
+			"2.jpeg",
+			"3.jpeg",
+			"4.jpeg",
+			"5.jpeg"
+		]
 	},
 	{
+		"id": 3,
 		"title": "Pump Cup Leathers for Coleman Stoves & Lanterns",
 		"desc": [
 			"Excellent pump cup leathers for Coleman lanterns and stoves.",
@@ -49,6 +64,7 @@
 		]
 	},
 	{
+		"id": 4,
 		"title": "Pump Cup Leathers for Tilley Lamps",
 		"desc": [
 			"Excellent pump cup leathers for Tilley lanterns.",
@@ -71,6 +87,7 @@
 		]
 	},
 	{
+		"id": 5,
 		"title": "Repair Kit for Enders Stoves",
 		"desc": [
 			"Excellent pump cupleathers and sealing washers for German Enders pressure stoves.",
@@ -95,6 +112,7 @@
 		]
 	},
 	{
+		"id": 6,
 		"title": "Pump cup leathers for Optimus Nova Trangia Primus Ergo Pump",
 		"desc": [
 			"They are completely new, unused and produced from premium quality real leather.",

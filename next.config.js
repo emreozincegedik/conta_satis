@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-}
+  env: {
+    merchant_id: process.env.merchant_id,
+    merchant_key: process.env.merchant_key,
+    merchant_salt: process.env.merchant_salt,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
