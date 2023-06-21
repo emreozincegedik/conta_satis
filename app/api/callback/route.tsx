@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
+var x = 1;
 export async function POST(request: NextRequest) {
   const JOIN_API_KEY = "552ca49562ad4e888a8050b2e829513d";
   const deviceId = "77ddb3e749424e2095f56e47e20ea373";
@@ -12,9 +13,12 @@ export async function POST(request: NextRequest) {
     // 3) Aynı sipariş için birden fazla bildirim ulaşabilir (Ağ bağlantı sorunları vb. nedeniyle). Bu nedenle öncelikle
     // siparişin durumunu veri tabanınızdan kontrol edin, eğer onaylandıysa tekrar işlem yapmayın. Örneği aşağıda bulunmaktadır.
     var title = "payment start";
-    var text = request;
+    var text = JSON.stringify(request);
     var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
-    await fetch(url);
+    if (x == 1) {
+      await fetch(url);
+    }
+    x++;
     var callback = await request.json();
     console.log(callback);
     var merchant_id = "366809";
