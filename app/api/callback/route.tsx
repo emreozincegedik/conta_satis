@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
     // 3) Aynı sipariş için birden fazla bildirim ulaşabilir (Ağ bağlantı sorunları vb. nedeniyle). Bu nedenle öncelikle
     // siparişin durumunu veri tabanınızdan kontrol edin, eğer onaylandıysa tekrar işlem yapmayın. Örneği aşağıda bulunmaktadır.
     var title = "paytr request";
-    var body = await request.json();
-    var text = "callback: " + JSON.stringify(body);
+
+    var text = "callback: " + JSON.stringify(request);
 
     var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
     await fetch(url);
