@@ -32,14 +32,14 @@ export async function POST(request: NextRequest) {
   const deviceId = "77ddb3e749424e2095f56e47e20ea373";
   const url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
   await fetch(url);
-  if (token != callback.hash) {
-    throw new Error("PAYTR notification failed: bad hash");
-  }
+  // if (token != callback.hash) {
+  //   throw new Error("PAYTR notification failed: bad hash");
+  // }
 
-  if (callback.status == "success") {
-    //basarili
-  } else {
-    //basarisiz
-  }
+  // if (callback.status == "success") {
+  //   //basarili
+  // } else {
+  //   //basarisiz
+  // }
   return new NextResponse("OK");
 }
