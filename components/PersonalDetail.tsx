@@ -13,8 +13,13 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Autocomplete } from "@mui/material";
 
 export const PersonalDetail = () => {
+  const countries = [
+    { label: "Turkey", price: 1 },
+    { label: "USA", price: 2 },
+  ];
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -35,7 +40,7 @@ export const PersonalDetail = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Sign up
+          Shipment Details
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -64,9 +69,29 @@ export const PersonalDetail = () => {
               <TextField
                 required
                 fullWidth
+                name="phone"
+                label="Phone"
+                id="phone"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
                 name="address"
                 label="Address"
                 id="address"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={countries}
+                // sx={{ width: 300 }}
+                renderInput={(params: any) => (
+                  <TextField {...params} label="Country" />
+                )}
               />
             </Grid>
           </Grid>
