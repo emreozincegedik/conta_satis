@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container, Grid } from "@mui/material";
 import { Basket } from "./Basket";
+import { PersonalDetail } from "./PersonalDetail";
 const steps = ["Basket", "Personal Details"];
 
 export const PaymentLayout = () => {
@@ -42,7 +43,7 @@ export const PaymentLayout = () => {
   };
 
   return (
-    <Container sx={{ py: 6 }} maxWidth="lg">
+    <Container sx={{ py: 6 }} maxWidth="md">
       {/* <Grid container spacing={6}> */}
       <Box sx={{ width: "100%" }}>
         <Stepper nonLinear activeStep={activeStep}>
@@ -58,7 +59,7 @@ export const PaymentLayout = () => {
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
               {/* Step {activeStep + 1} of 3 */}
-              {activeStep === 0 ? <Basket /> : ""}
+              {activeStep === 0 ? <Basket /> : <PersonalDetail />}
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
