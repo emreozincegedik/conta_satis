@@ -14,6 +14,7 @@ import { Basket } from "./Basket";
 import { PersonalDetail } from "./PersonalDetail";
 const steps = ["Basket", "Personal Details"];
 import { useGlobalContext } from "@/components/Context";
+import { useRouter } from "next/navigation";
 
 export const PaymentLayout = () => {
   const {
@@ -24,7 +25,11 @@ export const PaymentLayout = () => {
     address,
     email,
     phone,
+    setIframetoken2,
+    totalPayment,
+    otherCountry,
   } = useGlobalContext();
+  const router = useRouter();
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
@@ -43,8 +48,8 @@ export const PaymentLayout = () => {
   const allStepsCompleted = () => {
     if (
       totalItemsInBasket == 0 ||
-      country == "" ||
       country == null ||
+      (otherCountry == "" && country.label == "Other") ||
       username == "" ||
       address == "" ||
       email == "" ||
@@ -55,22 +60,46 @@ export const PaymentLayout = () => {
     return true;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     var newActiveStep = activeStep;
     if (isLastStep()) {
       //go to payment
-      console.log(country, username, address, email, phone);
-      console.log(allStepsCompleted());
+      console.log(basket, country);
+      var options = {
+        method: "POST",
+        // url: "https://www.paytr.com/odeme/api/get-token",
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        formData: {
+          email: email,
+          user_name: username,
+          user_address: address,
+          user_phone: phone,
+          user_basket: basket,
+          country: country,
+          lang: "en",
+          currency: "TL",
+          otherCountry: otherCountry,
+        },
+      };
+      try {
+        var res = await fetch("/api/payment", {
+          method: "POST",
+          body: JSON.stringify(options.formData),
+        });
+        var data = await res.json();
+        console.log(data);
+        setIframetoken2(data.token);
+        router.push("/payment");
+        // console.log(data);
+      } catch (error) {
+        console.log("oh nooo", error);
+      }
+      // console.log(country, username, address, email, phone);
+      // console.log(allStepsCompleted());
     } else {
       newActiveStep++;
     }
     setActiveStep(newActiveStep);
-    // const newActiveStep = isLastStep()
-    //   ? // It's the last step, but not all steps have been completed,
-    //     // find the first step that has been completed
-    //     activeStep
-    //   : activeStep + 1;
-    // setActiveStep(newActiveStep);
   };
 
   const handleBack = () => {
@@ -94,6 +123,7 @@ export const PaymentLayout = () => {
             </Step>
           ))}
         </Stepper>
+        <div>total payment: ${totalPayment()}</div>
         <div>
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>

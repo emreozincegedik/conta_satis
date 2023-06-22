@@ -1,6 +1,6 @@
-import { Payment } from "@/components";
+import { Paymentx } from "@/components";
 import React from "react";
 
 export default function page() {
-  return <Payment />;
+  return <Paymentx />;
 }

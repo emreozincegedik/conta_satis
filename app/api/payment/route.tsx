@@ -1,16 +1,42 @@
 import { NextResponse, NextRequest } from "next/server";
 import crypto from "crypto";
-
+import items from "@/utils/items.json";
+import countries from "@/utils/countries.json";
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const userIp = "92.44.51.36";
-  const paymentAmount = 100;
+
+  var x = body.user_basket;
+  var amount = 0;
+  var user_basket = [];
+  for (let i = 0; i < x.length; i++) {
+    const basketItem = x[i];
+    for (let j = 0; j < items.length; j++) {
+      const item = items[j];
+      if (basketItem.id == item.id) {
+        amount += basketItem.quantity * item.price;
+        user_basket.push([item.title, item.price, basketItem.quantity]);
+      }
+    }
+  }
+  var user_basket_buffer = Buffer.from(JSON.stringify(user_basket)).toString(
+    "base64"
+  );
+  for (let i = 0; i < countries.length; i++) {
+    const country = countries[i];
+    if (country.label == body.country.label) {
+      amount += country.price;
+    }
+  }
+  console.log(amount);
+
+  const paymentAmount = amount * 100;
+  const userIp = request.ip;
   const merchant_id = process.env.merchant_id;
   const merchant_key = process.env.merchant_key;
   const merchant_salt = process.env.merchant_salt;
   // Başarılı ödeme sonrası müşterinizin yönlendirileceği sayfa
   // Bu sayfa siparişi onaylayacağınız sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
-  const merchant_ok_url = "http://www.sefaudi.com/"; //odeme_basarili.php";
+  const merchant_ok_url = "http://www.sefaudi.com/payment_success"; //odeme_basarili.php";
   // Ödeme sürecinde beklenmedik bir hata oluşması durumunda müşterinizin yönlendirileceği sayfa
   // Bu sayfa siparişi iptal edeceğiniz sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
   const merchant_fail_url = "http://www.siteniz.com/odeme_hata.php";
@@ -24,7 +50,7 @@ export async function POST(request: NextRequest) {
   const max_installment = "0";
   const no_installment = "0"; // Taksit yapılmasını istemiyorsanız, sadece tek çekim sunacaksanız 1 yapın.
   const test_mode = "0"; // Mağaza canlı modda iken test işlem yapmak için 1 olarak gönderilebilir.
-  const hashSTR = `${merchant_id}${userIp}${merchant_oid}${body.email}${paymentAmount}${body.user_basket}${no_installment}${max_installment}${body.currency}${test_mode}`;
+  const hashSTR = `${merchant_id}${userIp}${merchant_oid}${body.email}${paymentAmount}${user_basket_buffer}${no_installment}${max_installment}${body.currency}${test_mode}`;
   const paytr_token = hashSTR + merchant_salt;
   const token = crypto
     .createHmac("sha256", merchant_key || "")
@@ -40,11 +66,14 @@ export async function POST(request: NextRequest) {
   formData.payment_amount = paymentAmount;
   formData.merchant_oid = merchant_oid;
   formData.user_name = body.user_name;
-  formData.user_address = body.user_address;
+  formData.user_address =
+    body.user_address + " " + body.country.label === "Other"
+      ? body.other_country + "(Other)"
+      : body.country.label;
   formData.user_phone = body.user_phone;
   formData.merchant_ok_url = merchant_ok_url;
   formData.merchant_fail_url = merchant_fail_url;
-  formData.user_basket = body.user_basket;
+  formData.user_basket = user_basket_buffer;
   formData.user_ip = userIp;
   formData.timeout_limit = timeout_limit;
   formData.debug_on = debug_on;
@@ -61,15 +90,18 @@ export async function POST(request: NextRequest) {
     var encodedValue = encodeURIComponent(formData[property]);
     formBody.push(encodedKey + "=" + encodedValue);
   }
-  // console.log(formBody);
+  console.log(formBody);
   var formBodyString = formBody.join("&");
-  var data = await fetch("https://www.paytr.com/odeme/api/get-token", {
-    method: "POST",
-    headers: { "content-type": "application/x-www-form-urlencoded" },
-    body: formBodyString,
-  });
+  // return NextResponse.json({ token: "test" });
+
   try {
+    var data = await fetch("https://www.paytr.com/odeme/api/get-token", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: formBodyString,
+    });
     var body2 = await data.json();
+    console.log(body2);
     // console.log(body2);
     return NextResponse.json(body2, {
       status: 200,

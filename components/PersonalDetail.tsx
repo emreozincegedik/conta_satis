@@ -9,10 +9,8 @@ import {
   TextField,
 } from "@mui/material";
 import { useGlobalContext } from "@/components/Context";
-type Country = {
-  label: string;
-  price: number;
-};
+import { Country } from "@/interfaces/Country";
+import countriesJson from "@/utils/countries.json";
 export const PersonalDetail = () => {
   const {
     username,
@@ -25,6 +23,8 @@ export const PersonalDetail = () => {
     setEmail,
     phone,
     setPhone,
+    otherCountry,
+    setOtherCountry,
   } = useGlobalContext();
   const t = (e: any) => {
     console.log("click");
@@ -32,15 +32,9 @@ export const PersonalDetail = () => {
     setCountry(e);
   };
   const [countryValue, setCountryValue] = React.useState("");
-  const countries = ["Turkey", "Germany", "France", "Italy", "Spain"];
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  // const countries = ["Turkey", "Germany", "France", "Italy", "Spain"];
+  const countries: Country[] = countriesJson;
+
   return (
     <Container component="main" maxWidth="xs">
       {/* <CssBaseline /> */}
@@ -55,7 +49,7 @@ export const PersonalDetail = () => {
         <Typography component="h1" variant="h5">
           Shipment Details
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <TextField
@@ -106,6 +100,7 @@ export const PersonalDetail = () => {
             </Grid>
             <Grid item xs={12}>
               <Autocomplete
+                required
                 disablePortal
                 id="combo-box-demo"
                 onInputChange={(event, newInputValue) => {
@@ -113,15 +108,44 @@ export const PersonalDetail = () => {
                 }}
                 inputValue={countryValue}
                 options={countries}
+                // getOptionLabel={(option) => {
+                //   // console.log(option);
+                //   return option.label;
+                // }}
+                getOptionLabel={(option) => option.label}
                 value={country}
                 onChange={(event: any, newValue: string | null) => {
+                  console.log(event.target);
                   setCountry(newValue);
                 }}
+                renderOption={(props, option) => (
+                  <Box
+                    component="li"
+                    sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                    {...props}
+                  >
+                    {option.label} (${option.price})
+                  </Box>
+                )}
                 renderInput={(params: any) => (
                   <TextField {...params} label="Country" />
                 )}
+                label="Country"
               />
             </Grid>
+            {country && country.label === "Other" && (
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="otherCountry"
+                  label="Country"
+                  id="otherCountry"
+                  onChange={(e) => setOtherCountry(e.target.value)}
+                  value={otherCountry}
+                />
+              </Grid>
+            )}
           </Grid>
         </Box>
       </Box>

@@ -8,3 +8,4 @@ export { PaymentLayout } from "./PaymentLayout";
 // export { Basket } from "./Basket";
 export { Navbar } from "./Navbar";
 export { Payment } from "./Payment";
+export { Paymentx } from "./Paymentx";

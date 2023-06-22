@@ -3,7 +3,15 @@ import React, { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BasketItem } from "@/interfaces/BasketItem";
+import items from "@/utils/items.json";
+import countries from "@/utils/countries.json";
+import { Country } from "@/interfaces/Country";
 interface IGlobalContextProps {
+  otherCountry: string;
+  setOtherCountry: (country: string) => void;
+  totalPayment: () => number;
+  iframetoken2: string;
+  setIframetoken2: (token: string) => void;
   basket: BasketItem[];
   addToBasket: (item: BasketItem) => void;
   totalItemsInBasket: number;
@@ -20,11 +28,16 @@ interface IGlobalContextProps {
   setAddress: (address: string) => void;
   phone: string;
   setPhone: (phone: string) => void;
-  country: string | null;
-  setCountry: (country: string | null) => void;
+  country: Country | null;
+  setCountry: (country: Country) => void;
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
+  otherCountry: "",
+  setOtherCountry: () => {},
+  totalPayment: () => 0,
+  iframetoken2: "",
+  setIframetoken2: () => {},
   basket: [],
   addToBasket: () => {},
   totalItemsInBasket: 0,
@@ -41,7 +54,7 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
   setAddress: () => {},
   phone: "",
   setPhone: () => {},
-  country: "",
+  country: null,
   setCountry: () => {},
 });
 
@@ -53,9 +66,41 @@ export const GlobalContextProvider = (props: any) => {
   const [email, setEmail] = useState<string>("");
   const [address, setAddress] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
-  const [country, setCountry] = useState<string | null>("");
+  const [country, setCountry] = useState<Country | null>(null);
+  const [iframetoken2, setIframetoken2] = useState<string>("");
+  const [otherCountry, setOtherCountry] = useState<string>("");
   const toggleColorMode = () => {
     setThemeMode(themeMode === "light" ? "dark" : "light");
+  };
+  const totalPayment = () => {
+    var x = basket;
+    var amount = 0;
+    var user_basket = [];
+    for (let i = 0; i < x.length; i++) {
+      const basketItem = x[i];
+      for (let j = 0; j < items.length; j++) {
+        const item = items[j];
+        if (basketItem.id == item.id) {
+          amount += basketItem.quantity * item.price;
+          user_basket.push([item.title, item.price, basketItem.quantity]);
+        }
+      }
+    }
+    var user_basket_buffer = Buffer.from(JSON.stringify(user_basket)).toString(
+      "base64"
+    );
+    try {
+      // console.log(country);
+      for (let i = 0; i < countries.length; i++) {
+        const countryX = countries[i];
+        if (countryX.label == country?.label) {
+          amount += country?.price;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return amount;
   };
   const theme = React.useMemo(
     () =>
@@ -72,6 +117,11 @@ export const GlobalContextProvider = (props: any) => {
   return (
     <GlobalContext.Provider
       value={{
+        otherCountry: otherCountry,
+        setOtherCountry: setOtherCountry,
+        totalPayment: totalPayment,
+        iframetoken2: iframetoken2,
+        setIframetoken2: setIframetoken2,
         totalItemsInBasket: basket.reduce((total, item) => {
           return total + item.quantity;
         }, 0),

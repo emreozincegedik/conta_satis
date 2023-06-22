@@ -1,0 +1,18 @@
+[
+    {
+        "label": "Turkey",
+        "price": 10
+    },
+    {
+        "label": "Germany",
+        "price": 15
+    },
+    {
+        "label": "USA",
+        "price": 200
+    },
+    {
+        "label": "Other",
+        "price": 100
+    }
+]
