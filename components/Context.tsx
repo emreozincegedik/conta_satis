@@ -29,7 +29,7 @@ interface IGlobalContextProps {
   phone: string;
   setPhone: (phone: string) => void;
   country: Country | null;
-  setCountry: (country: Country) => void;
+  setCountry: (country: Country | null) => void;
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({

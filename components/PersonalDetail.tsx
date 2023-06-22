@@ -100,7 +100,6 @@ export const PersonalDetail = () => {
             </Grid>
             <Grid item xs={12}>
               <Autocomplete
-                required
                 disablePortal
                 id="combo-box-demo"
                 onInputChange={(event, newInputValue) => {
@@ -114,7 +113,7 @@ export const PersonalDetail = () => {
                 // }}
                 getOptionLabel={(option) => option.label}
                 value={country}
-                onChange={(event: any, newValue: string | null) => {
+                onChange={(event: any, newValue: Country | null) => {
                   console.log(event.target);
                   setCountry(newValue);
                 }}
@@ -130,7 +129,7 @@ export const PersonalDetail = () => {
                 renderInput={(params: any) => (
                   <TextField {...params} label="Country" />
                 )}
-                label="Country"
+                // label="Country"
               />
             </Grid>
             {country && country.label === "Other" && (
