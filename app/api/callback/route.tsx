@@ -12,16 +12,16 @@ export async function POST(request: NextRequest) {
     // veri tabanınızdan ilgili siparişi tespit edip onaylamalı veya iptal etmelisiniz.
     // 3) Aynı sipariş için birden fazla bildirim ulaşabilir (Ağ bağlantı sorunları vb. nedeniyle). Bu nedenle öncelikle
     // siparişin durumunu veri tabanınızdan kontrol edin, eğer onaylandıysa tekrar işlem yapmayın. Örneği aşağıda bulunmaktadır.
-    var title = "paytr request";
+    // var title = "paytr request";
 
-    var text = "callback: " + JSON.stringify(request);
+    // var text = "callback: " + JSON.stringify(request);
 
-    var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
-    await fetch(url);
+    // var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
+    // await fetch(url);
     return new NextResponse("OK");
 
     var callback = await request.json();
-    console.log(callback);
+    // console.log(callback);
     var merchant_id = "366809";
     var merchant_key = "Erbj6JS1L7514Krx";
     var merchant_salt = "7CYZJMZ8M4c3ig8z";
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       .createHmac("sha256", merchant_key)
       .update(paytr_token)
       .digest("base64");
-    console.log("here");
+    // console.log("here");
     // Oluşturulan hash'i, paytr'dan gelen post içindeki hash ile karşılaştır (isteğin paytr'dan geldiğine ve değişmediğine emin olmak için)
     // Bu işlemi yapmazsanız maddi zarara uğramanız olasıdır.
 

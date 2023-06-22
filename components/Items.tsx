@@ -2,7 +2,7 @@
 import { ProductCard } from "./ProductCard";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { ItemsDetail } from "@/interfaces/ItemsSmall";
+import { ItemsDetail } from "@/interfaces/ItemsDetail";
 export const Items = ({ itemsJson }: any) => {
   return (
     <Container sx={{ py: 6 }} maxWidth="lg">

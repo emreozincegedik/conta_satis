@@ -4,6 +4,7 @@ import crypto from "crypto";
 import Script from "next/script";
 import { useGlobalContext } from "./Context";
 import { useRouter } from "next/navigation";
+
 export const Payment = () => {
   const { basket } = useGlobalContext();
   const router = useRouter();
@@ -15,11 +16,11 @@ export const Payment = () => {
 
   const api = async () => {
     var basket = JSON.stringify([
-      ["Örnek Ürün 1", "18.00", 1],
-      ["Örnek Ürün 2", "33.25", 2],
-      ["Örnek Ürün 3", "45.42", 1],
+      ["Ornek urun 1", "18.00", 1],
+      ["Ornek urun 2", "33.25", 2],
+      ["Ornek urun 3", "45.42", 1],
     ]);
-    var user_basket = basket;
+    var user_basket = Buffer.from(basket).toString("base64");
     var email = "emreozincegedik@gmail.com"; // Müşterinizin sitenizde kayıtlı veya form vasıtasıyla aldığınız eposta adresi.
     var currency = "TL";
     var user_name = "Emre Özincegedik"; // Müşterinizin sitenizde kayıtlı veya form aracılığıyla aldığınız ad ve soyad bilgisi
@@ -49,7 +50,7 @@ export const Payment = () => {
       });
       var data = await res.json();
       setIframetoken(data.token);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log("oh nooo", error);
     }

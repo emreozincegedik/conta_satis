@@ -18,7 +18,7 @@ import CardActions from "@mui/material/CardActions";
 import Image from "next/image";
 import { Carousel } from "@/components/Carousel";
 import { useRouter } from "next/navigation";
-import { ItemsDetail } from "@/interfaces/ItemsSmall";
+import { ItemsDetail } from "@/interfaces/ItemsDetail";
 import { AddShoppingCart } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
@@ -121,7 +121,7 @@ export const ProductCard = ({
               }}
               disabled={addToCartDisabled}
               onClick={() => {
-                console.log("here item id: ", id, quantity);
+                // console.log("here item id: ", id, quantity);
                 addToBasket({ id, quantity });
               }}
             >

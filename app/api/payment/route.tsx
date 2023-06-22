@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     .digest("base64");
 
   var formData: any = {};
-
+  // console.log(body);
   formData.merchant_id = process.env.merchant_id;
   formData.merchant_key = process.env.merchant_key;
   formData.merchant_salt = process.env.merchant_salt;
@@ -61,6 +61,7 @@ export async function POST(request: NextRequest) {
     var encodedValue = encodeURIComponent(formData[property]);
     formBody.push(encodedKey + "=" + encodedValue);
   }
+  // console.log(formBody);
   var formBodyString = formBody.join("&");
   var data = await fetch("https://www.paytr.com/odeme/api/get-token", {
     method: "POST",
@@ -69,13 +70,13 @@ export async function POST(request: NextRequest) {
   });
   try {
     var body2 = await data.json();
-    console.log(body2);
+    // console.log(body2);
     return NextResponse.json(body2, {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.log("error");
+    // console.log("error");
     console.log(error);
     return NextResponse.error();
   }

@@ -159,20 +159,14 @@ export const Navbar = ({ data }: any) => {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              // fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              // letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            <Image
-              src="/logo.png"
-              alt="logo"
-              onClick={() => router.push("/")}
-              width={200}
-              height={50}
-            />
+            <Home fontSize="large" />
           </Typography>
 
           <Box
@@ -194,7 +188,10 @@ export const Navbar = ({ data }: any) => {
             ))}
           </Box>
           {basket.length > 0 && (
-            <Button sx={{ my: 2, color: "white", transition: "all 0.3s ease" }}>
+            <Button
+              sx={{ my: 2, color: "white", transition: "all 0.3s ease" }}
+              onClick={() => router.push("/basket")}
+            >
               <ShoppingCartOutlined />
             </Button>
           )}

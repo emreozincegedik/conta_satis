@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { BasketItem } from "@/interfaces/Basket";
+import { BasketItem } from "@/interfaces/BasketItem";
 interface IGlobalContextProps {
   basket: BasketItem[];
   addToBasket: (item: BasketItem) => void;
@@ -37,7 +37,7 @@ export const GlobalContextProvider = (props: any) => {
   };
   useEffect(() => {
     if (props.data) {
-      console.log(props.data);
+      // console.log(props.data);
       // setUsername(props.username);
       if (props.data.status !== 500) {
         return setUsername(props.data.data.me.username);
@@ -60,18 +60,23 @@ export const GlobalContextProvider = (props: any) => {
     <GlobalContext.Provider
       value={{
         addToBasket: (item: BasketItem) => {
-          var existingItem = basket.filter(
-            (basketItem) => basketItem.id === item.id
-          );
+          var existingItem = basket.filter((basketItem, i) => {
+            return basketItem.id === item.id;
+          });
           if (existingItem.length > 0) {
             var otherItems = basket.filter(
               (basketItem) => basketItem.id !== item.id
             );
             existingItem[0].quantity += item.quantity;
-            console.log([existingItem[0], ...otherItems]);
-            setBasket([existingItem[0], ...otherItems]);
+            if (existingItem[0].quantity == 0) {
+              setBasket(otherItems);
+            } else {
+              var newBasket = [...basket];
+
+              setBasket(newBasket);
+            }
           } else {
-            console.log([...basket, item]);
+            // console.log([...basket, item]);
             setBasket([...basket, item]);
           }
         },
