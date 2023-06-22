@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useGlobalContext } from "@/components/Context";
 import Image from "next/image";
 import { BasketItem as BasketItemDetail } from "@/interfaces/BasketItem";
@@ -15,10 +15,17 @@ export const BasketItem = (item: ItemsDetail) => {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-evenly",
+        borderBottom: "1px solid lightblue",
+        // borderRadius: "20px",
+        paddingBottom: "20px",
+        marginBottom: "20px",
       }}
     >
-      <div style={{ width: "40%" }}>
-        <h4 style={{ marginBottom: "5px" }}>{item.title}</h4>
+      <div style={{ width: "50%" }}>
+        <Typography component="h6" variant="h6">
+          {item.title}
+        </Typography>
+        {/* <h4 style={{ marginBottom: "5px" }}></h4> */}
         <div
           className="information"
           style={{
