@@ -15,6 +15,8 @@ import { PersonalDetail } from "./PersonalDetail";
 const steps = ["Basket", "Personal Details"];
 import { useGlobalContext } from "@/components/Context";
 import { useRouter } from "next/navigation";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
 
 export const PaymentLayout = () => {
   const {
@@ -35,6 +37,7 @@ export const PaymentLayout = () => {
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
   }>({});
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const totalSteps = () => {
     return steps.length;
@@ -81,6 +84,8 @@ export const PaymentLayout = () => {
           otherCountry: otherCountry,
         },
       };
+      setLoading(true);
+
       try {
         var res = await fetch("/api/payment", {
           method: "POST",
@@ -140,17 +145,28 @@ export const PaymentLayout = () => {
                 Back
               </Button>
               <Box sx={{ flex: "1 1 auto" }} />
-              <Button
-                onClick={handleNext}
-                disabled={!allStepsCompleted() && activeStep === 1}
-                sx={{ mr: 1 }}
-              >
-                {activeStep === 1
-                  ? allStepsCompleted()
-                    ? "Go To Payment"
-                    : "Fill basket and shipment details"
-                  : "Next"}
-              </Button>
+              {loading ? (
+                <LoadingButton
+                  loading
+                  loadingPosition="start"
+                  startIcon={<SaveIcon />}
+                  // variant="outlined"
+                >
+                  Redirecting to payment page...
+                </LoadingButton>
+              ) : (
+                <Button
+                  onClick={handleNext}
+                  disabled={!allStepsCompleted() && activeStep === 1}
+                  sx={{ mr: 1 }}
+                >
+                  {activeStep === 1
+                    ? allStepsCompleted()
+                      ? "Go To Payment"
+                      : "Fill basket and shipment details"
+                    : "Next"}
+                </Button>
+              )}
             </Box>
           </React.Fragment>
         </div>

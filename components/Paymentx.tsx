@@ -44,7 +44,7 @@ export const Paymentx = () => {
       },
     };
     try {
-      var res = await fetch("/api/payment", {
+      var res = await fetch("/api/paymentx", {
         method: "POST",
         body: JSON.stringify(options.formData),
       });

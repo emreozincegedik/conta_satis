@@ -36,10 +36,10 @@ export async function POST(request: NextRequest) {
   const merchant_salt = process.env.merchant_salt;
   // Başarılı ödeme sonrası müşterinizin yönlendirileceği sayfa
   // Bu sayfa siparişi onaylayacağınız sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
-  const merchant_ok_url = "http://www.sefaudi.com/payment_success"; //odeme_basarili.php";
+  const merchant_ok_url = "https://www.sefaudi.com/payment_success"; //odeme_basarili.php";
   // Ödeme sürecinde beklenmedik bir hata oluşması durumunda müşterinizin yönlendirileceği sayfa
   // Bu sayfa siparişi iptal edeceğiniz sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
-  const merchant_fail_url = "http://www.siteniz.com/odeme_hata.php";
+  const merchant_fail_url = "https://www.sefaudi.com/payment_fail";
   const timeout_limit = 30; // İşlem zaman aşımı süresi - dakika cinsinden
   const debug_on = 1; // Hata mesajlarının ekrana basılması için entegrasyon ve test sürecinde 1 olarak bırakın. Daha sonra 0 yapabilirsiniz.
   const merchant_oid = "IN" + Date.now();
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
   // Sıfır (0) gönderilmesi durumunda yürürlükteki en fazla izin verilen taksit geçerli olur.
   const max_installment = "0";
   const no_installment = "0"; // Taksit yapılmasını istemiyorsanız, sadece tek çekim sunacaksanız 1 yapın.
-  const test_mode = "0"; // Mağaza canlı modda iken test işlem yapmak için 1 olarak gönderilebilir.
+  const test_mode = "1"; // Mağaza canlı modda iken test işlem yapmak için 1 olarak gönderilebilir.
   const hashSTR = `${merchant_id}${userIp}${merchant_oid}${body.email}${paymentAmount}${user_basket_buffer}${no_installment}${max_installment}${body.currency}${test_mode}`;
   const paytr_token = hashSTR + merchant_salt;
   const token = crypto
@@ -67,9 +67,11 @@ export async function POST(request: NextRequest) {
   formData.merchant_oid = merchant_oid;
   formData.user_name = body.user_name;
   formData.user_address =
-    body.user_address + " " + body.country.label === "Other"
+    body.user_address +
+    " " +
+    (body.country.label === "Other"
       ? body.other_country + "(Other)"
-      : body.country.label;
+      : body.country.label);
   formData.user_phone = body.user_phone;
   formData.merchant_ok_url = merchant_ok_url;
   formData.merchant_fail_url = merchant_fail_url;
