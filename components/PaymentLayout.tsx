@@ -1,17 +1,31 @@
 "use client";
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepButton from "@mui/material/StepButton";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { Container, Grid } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Typography,
+  Button,
+  StepButton,
+  Step,
+  Stepper,
+  Box,
+} from "@mui/material";
 import { Basket } from "./Basket";
 import { PersonalDetail } from "./PersonalDetail";
 const steps = ["Basket", "Personal Details"];
+import { useGlobalContext } from "@/components/Context";
 
 export const PaymentLayout = () => {
+  const {
+    basket,
+    totalItemsInBasket,
+    country,
+    username,
+    address,
+    email,
+    phone,
+  } = useGlobalContext();
+
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
@@ -25,13 +39,38 @@ export const PaymentLayout = () => {
     return activeStep === totalSteps() - 1;
   };
 
+  //payment button enabled when all steps are completed
+  const allStepsCompleted = () => {
+    if (
+      totalItemsInBasket == 0 ||
+      country == "" ||
+      country == null ||
+      username == "" ||
+      address == "" ||
+      email == "" ||
+      phone == ""
+    ) {
+      return false;
+    }
+    return true;
+  };
+
   const handleNext = () => {
-    const newActiveStep = isLastStep()
-      ? // It's the last step, but not all steps have been completed,
-        // find the first step that has been completed
-        activeStep
-      : activeStep + 1;
+    var newActiveStep = activeStep;
+    if (isLastStep()) {
+      //go to payment
+      console.log(country, username, address, email, phone);
+      console.log(allStepsCompleted());
+    } else {
+      newActiveStep++;
+    }
     setActiveStep(newActiveStep);
+    // const newActiveStep = isLastStep()
+    //   ? // It's the last step, but not all steps have been completed,
+    //     // find the first step that has been completed
+    //     activeStep
+    //   : activeStep + 1;
+    // setActiveStep(newActiveStep);
   };
 
   const handleBack = () => {
@@ -73,10 +112,14 @@ export const PaymentLayout = () => {
               <Box sx={{ flex: "1 1 auto" }} />
               <Button
                 onClick={handleNext}
-                // disabled={activeStep === 1}
+                disabled={!allStepsCompleted() && activeStep === 1}
                 sx={{ mr: 1 }}
               >
-                {activeStep === 1 ? "Go To Payment" : "Next"}
+                {activeStep === 1
+                  ? allStepsCompleted()
+                    ? "Go To Payment"
+                    : "Fill basket and shipment details"
+                  : "Next"}
               </Button>
             </Box>
           </React.Fragment>

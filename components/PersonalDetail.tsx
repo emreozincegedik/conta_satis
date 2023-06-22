@@ -1,25 +1,38 @@
 "use client";
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-// import Link from "./Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Autocomplete } from "@mui/material";
-
+import {
+  Autocomplete,
+  Container,
+  Typography,
+  Box,
+  Grid,
+  TextField,
+} from "@mui/material";
+import { useGlobalContext } from "@/components/Context";
+type Country = {
+  label: string;
+  price: number;
+};
 export const PersonalDetail = () => {
-  const countries = [
-    { label: "Turkey", price: 1 },
-    { label: "USA", price: 2 },
-  ];
+  const {
+    username,
+    setUsername,
+    address,
+    setAddress,
+    country,
+    setCountry,
+    email,
+    setEmail,
+    phone,
+    setPhone,
+  } = useGlobalContext();
+  const t = (e: any) => {
+    console.log("click");
+    console.log(e);
+    setCountry(e);
+  };
+  const [countryValue, setCountryValue] = React.useState("");
+  const countries = ["Turkey", "Germany", "France", "Italy", "Spain"];
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -53,6 +66,8 @@ export const PersonalDetail = () => {
                 id="firstName"
                 label="Name and Surname"
                 autoFocus
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
               />
             </Grid>
             <Grid item xs={12}>
@@ -63,6 +78,8 @@ export const PersonalDetail = () => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -72,6 +89,8 @@ export const PersonalDetail = () => {
                 name="phone"
                 label="Phone"
                 id="phone"
+                onChange={(e) => setPhone(e.target.value)}
+                value={phone}
               />
             </Grid>
             <Grid item xs={12}>
@@ -81,28 +100,29 @@ export const PersonalDetail = () => {
                 name="address"
                 label="Address"
                 id="address"
+                onChange={(e) => setAddress(e.target.value)}
+                value={address}
               />
             </Grid>
             <Grid item xs={12}>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
+                onInputChange={(event, newInputValue) => {
+                  setCountryValue(newInputValue);
+                }}
+                inputValue={countryValue}
                 options={countries}
-                // sx={{ width: 300 }}
+                value={country}
+                onChange={(event: any, newValue: string | null) => {
+                  setCountry(newValue);
+                }}
                 renderInput={(params: any) => (
                   <TextField {...params} label="Country" />
                 )}
               />
             </Grid>
           </Grid>
-          {/* <LoadingButton
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </LoadingButton> */}
         </Box>
       </Box>
     </Container>

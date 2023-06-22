@@ -6,6 +6,7 @@ import { BasketItem } from "@/interfaces/BasketItem";
 interface IGlobalContextProps {
   basket: BasketItem[];
   addToBasket: (item: BasketItem) => void;
+  totalItemsInBasket: number;
   removeFromBasket: (id: number) => void;
   setBasket: (basket: BasketItem[]) => void;
   toggleColorMode: () => void;
@@ -13,11 +14,20 @@ interface IGlobalContextProps {
   errorPage: boolean;
   setUsername: (user: string) => void;
   setErrorPage: (state: boolean) => void;
+  email: string;
+  setEmail: (email: string) => void;
+  address: string;
+  setAddress: (address: string) => void;
+  phone: string;
+  setPhone: (phone: string) => void;
+  country: string | null;
+  setCountry: (country: string | null) => void;
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
   basket: [],
   addToBasket: () => {},
+  totalItemsInBasket: 0,
   removeFromBasket: () => {},
   setBasket: () => {},
   toggleColorMode: () => {},
@@ -25,6 +35,14 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
   errorPage: false,
   setUsername: () => {},
   setErrorPage: () => {},
+  email: "",
+  setEmail: () => {},
+  address: "",
+  setAddress: () => {},
+  phone: "",
+  setPhone: () => {},
+  country: "",
+  setCountry: () => {},
 });
 
 export const GlobalContextProvider = (props: any) => {
@@ -32,18 +50,13 @@ export const GlobalContextProvider = (props: any) => {
   const [themeMode, setThemeMode] = useState<"light" | "dark">("light");
   const [errorPage, setErrorPage] = useState(false);
   const [basket, setBasket] = useState<BasketItem[]>([]);
+  const [email, setEmail] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [country, setCountry] = useState<string | null>("");
   const toggleColorMode = () => {
     setThemeMode(themeMode === "light" ? "dark" : "light");
   };
-  useEffect(() => {
-    if (props.data) {
-      // console.log(props.data);
-      // setUsername(props.username);
-      if (props.data.status !== 500) {
-        return setUsername(props.data.data.me.username);
-      }
-    }
-  }, [props.data]);
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -59,6 +72,9 @@ export const GlobalContextProvider = (props: any) => {
   return (
     <GlobalContext.Provider
       value={{
+        totalItemsInBasket: basket.reduce((total, item) => {
+          return total + item.quantity;
+        }, 0),
         addToBasket: (item: BasketItem) => {
           var existingItem = basket.filter((basketItem, i) => {
             return basketItem.id === item.id;
@@ -91,6 +107,17 @@ export const GlobalContextProvider = (props: any) => {
         setUsername: setUsername,
         setErrorPage: setErrorPage,
         errorPage: errorPage,
+        email: email,
+        setEmail: setEmail,
+        address: address,
+        setAddress: setAddress,
+        phone: phone,
+        setPhone: setPhone,
+        country: country,
+        setCountry: (e) => {
+          console.log(e);
+          setCountry(e);
+        },
       }}
     >
       <ThemeProvider theme={theme}>

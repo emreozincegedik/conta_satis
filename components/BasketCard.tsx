@@ -1,25 +1,19 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import {
-  PlayArrow,
-  SkipNext,
-  AddCircleOutline,
-  RemoveCircleOutline,
-} from "@mui/icons-material";
-import { Grid } from "@mui/material";
+  Grid,
+  Typography,
+  IconButton,
+  CardMedia,
+  CardContent,
+  Card,
+  Box,
+} from "@mui/material";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
 // import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { useGlobalContext } from "@/components/Context";
 
 export function BasketCard(item: ItemsDetail) {
-  const theme = useTheme();
   const { addToBasket, basket } = useGlobalContext();
 
   const itemCount = () => basket.filter((i) => i.id === item.id)[0].quantity;

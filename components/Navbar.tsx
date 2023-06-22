@@ -11,12 +11,14 @@ import {
   Button,
   Tooltip,
   MenuItem,
+  Badge,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
   AccountCircle,
   Home,
   ShoppingCartOutlined,
+  AddShoppingCart,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 // import { useContext } from "react";
@@ -66,7 +68,7 @@ export const Navbar = ({ data }: any) => {
     return () => {};
   }, []);
   const theme = useTheme();
-  const { basket } = useGlobalContext();
+  const { totalItemsInBasket } = useGlobalContext();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -187,14 +189,16 @@ export const Navbar = ({ data }: any) => {
               </Button>
             ))}
           </Box>
-          {basket.length > 0 && (
-            <Button
-              sx={{ my: 2, color: "white", transition: "all 0.3s ease" }}
-              onClick={() => router.push("/basket")}
-            >
-              <ShoppingCartOutlined />
-            </Button>
-          )}
+          {/* <StyledButton onClick={() => setCartOpen(true)}> */}
+
+          <Button
+            sx={{ my: 2, color: "white", transition: "all 0.3s ease" }}
+            onClick={() => router.push("/basket")}
+          >
+            <Badge badgeContent={totalItemsInBasket} color="error">
+              <AddShoppingCart />
+            </Badge>
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>
