@@ -81,7 +81,7 @@ export const PaymentLayout = () => {
           country: country,
           lang: "en",
           currency: "TL",
-          otherCountry: otherCountry,
+          other_country: otherCountry,
         },
       };
       setLoading(true);
