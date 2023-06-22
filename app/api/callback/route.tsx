@@ -14,7 +14,13 @@ export async function POST(request: NextRequest) {
     // siparişin durumunu veri tabanınızdan kontrol edin, eğer onaylandıysa tekrar işlem yapmayın. Örneği aşağıda bulunmaktadır.
     var title = "paytr request";
 
-    var text = "callback: " + JSON.stringify(request);
+    try {
+      var text = "callback: " + JSON.stringify(await request.json());
+    } catch (error) {
+      var text =
+        "callback body empty. headers: " +
+        JSON.stringify(await request.headers);
+    }
 
     var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
     await fetch(url);
