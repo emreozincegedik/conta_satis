@@ -51,7 +51,7 @@ export const Carousel = ({ images, imgPath }: any) => {
                   src={`${imgPath}/${image}`}
                   alt={`${imgPath}`}
                   fill
-                  sizes="100%"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ objectFit: "contain" }}
                   priority={true}
                 />
