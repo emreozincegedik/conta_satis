@@ -1,16 +1,19 @@
-import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
+import {
+  AddCircleOutline,
+  RemoveCircleOutline,
+  DeleteForeverOutlined,
+} from "@mui/icons-material";
 import {
   Grid,
   Typography,
   IconButton,
-  CardMedia,
   CardContent,
   Card,
   Box,
 } from "@mui/material";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
 import { useGlobalContext } from "@/components/Context";
-
+import Image from "next/image";
 export function BasketCard(item: ItemsDetail) {
   const { addToBasket, basket } = useGlobalContext();
 
@@ -20,6 +23,19 @@ export function BasketCard(item: ItemsDetail) {
     <Card
       sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}
     >
+      <Image
+        style={{
+          justifySelf: "flex-center",
+          alignSelf: "center",
+          padding: "10px",
+        }}
+        width={151}
+        height={151}
+        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        src={`${item.imgPath}/${item.images ? item.images[0] : null}`}
+        alt={`${item.images ? item.images[0] : null}`}
+      />
+
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="div" variant="h5">
@@ -54,8 +70,16 @@ export function BasketCard(item: ItemsDetail) {
           <IconButton
             aria-label="previous"
             onClick={() => addToBasket({ id: item.id, quantity: -1 })}
+            color="error"
+            sx={{
+              transition: "all 0.8s ease",
+            }}
           >
-            <RemoveCircleOutline />
+            {itemCount() == 1 ? (
+              <DeleteForeverOutlined />
+            ) : (
+              <RemoveCircleOutline />
+            )}
           </IconButton>
           <Typography
             variant="h6"
@@ -69,17 +93,12 @@ export function BasketCard(item: ItemsDetail) {
           <IconButton
             aria-label="add"
             onClick={() => addToBasket({ id: item.id, quantity: 1 })}
+            color="info"
           >
             <AddCircleOutline />
           </IconButton>
         </Box>
       </Box>
-      <CardMedia
-        component="img"
-        sx={{ width: 151, justifySelf: "flex-end" }}
-        image={`${item.imgPath}/${item.images ? item.images[0] : null}`}
-        alt={`${item.images ? item.images[0] : null}`}
-      />
     </Card>
   );
 }

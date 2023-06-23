@@ -6,11 +6,12 @@ import Typography from "@mui/material/Typography";
 import { Button, Fade, TextField } from "@mui/material";
 import { Carousel } from "@/components/Carousel";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
-import { AddShoppingCart } from "@mui/icons-material";
+import { AddShoppingCart, AddCircle } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import { useGlobalContext } from "@/components/Context";
+import { parse } from "path";
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -34,19 +35,13 @@ export const ProductCard = ({
   images,
   imgPath,
 }: ItemsDetail) => {
-  const { addToBasket } = useGlobalContext();
-  const [quantity, setQuantity] = useState(0);
-  const [addToCartDisabled, setAddToCartDisabled] = useState(true);
-  const handleChangeCount = (value: number) => {
-    setQuantity(value);
-    if (value > 0) {
-      setAddToCartDisabled(false);
-    } else {
-      setAddToCartDisabled(true);
-    }
-  };
-  const [expanded, setExpanded] = useState(false);
+  const { basket, addToBasket } = useGlobalContext();
+  const [quantity, setQuantity] = useState(1);
 
+  const [expanded, setExpanded] = useState(false);
+  const isInBasket = () => {
+    return basket.some((item) => item.id === id);
+  };
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -90,14 +85,18 @@ export const ProductCard = ({
               required
               fullWidth
               type="number"
-              //   id="emai"
               label="Quantity"
               name="quantity"
               autoComplete="quantity"
+              InputLabelProps={{
+                shrink: true,
+              }}
               //   autoFocus
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleChangeCount(parseInt(e.target.value))
-              }
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                console.log(e.target.value, "asd", parseInt(e.target.value));
+                setQuantity(parseInt(e.target.value));
+              }}
+              value={quantity}
             />
             <Button
               variant="contained"
@@ -106,13 +105,14 @@ export const ProductCard = ({
                 marginTop: "1.15em",
                 marginLeft: "0.5em",
               }}
-              disabled={addToCartDisabled}
+              disabled={quantity < 1 || Number.isNaN(quantity) ? true : false}
               onClick={() => {
                 // console.log("here item id: ", id, quantity);
+                setQuantity(0);
                 addToBasket({ id, quantity });
               }}
             >
-              <AddShoppingCart />
+              {isInBasket() ? <AddCircle /> : <AddShoppingCart />}
             </Button>
           </Typography>
         </Typography>
