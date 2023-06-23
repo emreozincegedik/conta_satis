@@ -1,4 +1,3 @@
-import * as React from "react";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import {
   Grid,
@@ -10,7 +9,6 @@ import {
   Box,
 } from "@mui/material";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
-// import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { useGlobalContext } from "@/components/Context";
 
 export function BasketCard(item: ItemsDetail) {
@@ -80,7 +78,7 @@ export function BasketCard(item: ItemsDetail) {
         component="img"
         sx={{ width: 151, justifySelf: "flex-end" }}
         image={`${item.imgPath}/${item.images ? item.images[0] : null}`}
-        alt="Live from space album cover"
+        alt={`${item.images ? item.images[0] : null}`}
       />
     </Card>
   );

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BasketItem } from "@/interfaces/BasketItem";
@@ -86,11 +86,7 @@ export const GlobalContextProvider = (props: any) => {
         }
       }
     }
-    var user_basket_buffer = Buffer.from(JSON.stringify(user_basket)).toString(
-      "base64"
-    );
     try {
-      // console.log(country);
       for (let i = 0; i < countries.length; i++) {
         const countryX = countries[i];
         if (countryX.label == country?.label) {
@@ -142,7 +138,6 @@ export const GlobalContextProvider = (props: any) => {
               setBasket(newBasket);
             }
           } else {
-            // console.log([...basket, item]);
             setBasket([...basket, item]);
           }
         },

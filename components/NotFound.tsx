@@ -2,7 +2,6 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
 export const NotFound = () => {
   const router = useRouter();
   return (
@@ -25,9 +24,6 @@ export const NotFound = () => {
         variant="contained"
         color="primary"
         onClick={() => router.push("/")}
-        // component={Link}
-        // to="/"
-        // className={classes.button}
       >
         Go back to Home
       </Button>

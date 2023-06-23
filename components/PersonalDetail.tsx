@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import { useState } from "react";
 import {
   Autocomplete,
   Container,
@@ -26,13 +26,7 @@ export const PersonalDetail = () => {
     otherCountry,
     setOtherCountry,
   } = useGlobalContext();
-  const t = (e: any) => {
-    console.log("click");
-    console.log(e);
-    setCountry(e);
-  };
-  const [countryValue, setCountryValue] = React.useState("");
-  // const countries = ["Turkey", "Germany", "France", "Italy", "Spain"];
+  const [countryValue, setCountryValue] = useState("");
   const countries: Country[] = countriesJson;
 
   return (
@@ -107,10 +101,6 @@ export const PersonalDetail = () => {
                 }}
                 inputValue={countryValue}
                 options={countries}
-                // getOptionLabel={(option) => {
-                //   // console.log(option);
-                //   return option.label;
-                // }}
                 getOptionLabel={(option) => option.label}
                 value={country}
                 onChange={(event: any, newValue: Country | null) => {
@@ -129,7 +119,6 @@ export const PersonalDetail = () => {
                 renderInput={(params: any) => (
                   <TextField {...params} label="Country" />
                 )}
-                // label="Country"
               />
             </Grid>
             {country && country.label === "Other" && (

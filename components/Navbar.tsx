@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import { useState } from "react";
 import {
   AppBar,
   Box,
@@ -9,7 +9,6 @@ import {
   Menu,
   Container,
   Button,
-  Tooltip,
   MenuItem,
   Badge,
   Slide,
@@ -17,20 +16,14 @@ import {
 } from "@mui/material";
 import {
   Menu as MenuIcon,
-  AccountCircle,
   Home,
-  ShoppingCartOutlined,
   AddShoppingCart,
   WhatsApp,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
-// import { useContext } from "react";
-// import { GlobalContext } from "./globalContext";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { Page } from "@/interfaces/NavbarPageType";
 import { useGlobalContext } from "@/components/Context";
-import { useContext } from "react";
 const pages: Page[] = [
   {
     displayName: "About",
@@ -44,10 +37,6 @@ const pages: Page[] = [
   },
 ];
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window?: () => Window;
   children: React.ReactElement;
 }
@@ -70,35 +59,9 @@ function HideOnScroll(props: Props) {
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 export const Navbar = (props: any) => {
   const router = useRouter();
-  // console.log(props);
-  //   const { toggleColorMode, username, setUsername, errorPage } =
-  //     useContext(GlobalContext);
-  React.useEffect(() => {
-    // console.log(username);
-    async function fetchData() {
-      //   if (!errorPage && data.errors) {
-      // router.refresh();
-      // const res = await fetch("/api/auth/userDetailsNavbar", {
-      //   method: "POST",
-      //   next: { revalidate: 0 },
-      // });
-      // const data = await res.json();
-      // console.log("wooo");
-      // console.log(data);
-      // console.log("wooo");
-      // if (data.data) {
-      //   return setUsername(data.data.username);
-      // }
-      //   }
-    }
-    fetchData();
-    return () => {};
-  }, []);
   const theme = useTheme();
   const { totalItemsInBasket } = useGlobalContext();
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   // const [user, setUser] = React.useState<null | string>(username);
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -111,11 +74,11 @@ export const Navbar = (props: any) => {
   return (
     <>
       <CssBaseline />
+      <Toolbar />
       <HideOnScroll {...props}>
         <AppBar>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
               <Typography
                 onClick={() => router.push("/")}
                 variant="h6"
@@ -125,9 +88,7 @@ export const Navbar = (props: any) => {
                 sx={{
                   mr: 2,
                   display: { xs: "none", md: "flex" },
-                  //   fontFamily: "monospace",
                   fontWeight: 700,
-                  //   letterSpacing: ".3rem",
                   color: "inherit",
                   textDecoration: "none",
                 }}
@@ -191,7 +152,8 @@ export const Navbar = (props: any) => {
                 <IconButton
                   sx={{
                     my: 2,
-                    color: "white",
+                    color: "green",
+                    backgroundColor: "white",
                     transition: "all 0.3s ease",
                     width: {
                       xs: `calc(100% - ${theme.spacing(2) + 1000}px)`, // reduce width by 20px on xs breakpoint
@@ -225,8 +187,6 @@ export const Navbar = (props: any) => {
               >
                 <IconButton
                   onClick={() => router.push("/")}
-                  // variant="h5"
-                  // noWrap
                   component="a"
                   href="#"
                   sx={{
@@ -255,7 +215,6 @@ export const Navbar = (props: any) => {
                   </Button>
                 ))}
               </Box>
-              {/* <StyledButton onClick={() => setCartOpen(true)}> */}
 
               <IconButton
                 sx={{

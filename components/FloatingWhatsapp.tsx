@@ -1,6 +1,5 @@
 "use client";
 import { Fab } from "@mui/material";
-import React from "react";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 export const FloatingWhatsapp = () => {
   return (

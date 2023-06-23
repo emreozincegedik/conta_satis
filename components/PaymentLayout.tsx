@@ -1,8 +1,7 @@
 "use client";
-import * as React from "react";
+import { useState } from "react";
 import {
   Container,
-  Grid,
   Typography,
   Button,
   StepButton,
@@ -33,11 +32,11 @@ export const PaymentLayout = () => {
   } = useGlobalContext();
   const router = useRouter();
 
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState<{
+  const [activeStep, setActiveStep] = useState(0);
+  const [completed, setCompleted] = useState<{
     [k: number]: boolean;
   }>({});
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const totalSteps = () => {
     return steps.length;
@@ -130,7 +129,7 @@ export const PaymentLayout = () => {
         </Stepper>
         <div>total payment: ${totalPayment()}</div>
         <div>
-          <React.Fragment>
+          <>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
               {/* Step {activeStep + 1} of 3 */}
               {activeStep === 0 ? <Basket /> : <PersonalDetail />}
@@ -168,10 +167,9 @@ export const PaymentLayout = () => {
                 </Button>
               )}
             </Box>
-          </React.Fragment>
+          </>
         </div>
       </Box>
-      {/* </Grid> */}
     </Container>
   );
 };

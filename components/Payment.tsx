@@ -1,13 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import crypto from "crypto";
 import Script from "next/script";
 import { useGlobalContext } from "./Context";
-import { useRouter } from "next/navigation";
 
 export const Payment = () => {
-  const { basket, iframetoken2 } = useGlobalContext();
-  const router = useRouter();
+  const { iframetoken2 } = useGlobalContext();
 
   return (
     <div>

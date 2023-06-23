@@ -1,23 +1,10 @@
 "use client";
-import * as React from "react";
+import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  CardActionArea,
-  Collapse,
-  Fade,
-  TextField,
-} from "@mui/material";
-import Button from "@mui/material/Button";
-import CardActions from "@mui/material/CardActions";
-import Image from "next/image";
+import { Button, Fade, TextField } from "@mui/material";
 import { Carousel } from "@/components/Carousel";
-import { useRouter } from "next/navigation";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
 import { AddShoppingCart } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -47,9 +34,9 @@ export const ProductCard = ({
   images,
   imgPath,
 }: ItemsDetail) => {
-  const { basket, addToBasket } = useGlobalContext();
-  const [quantity, setQuantity] = React.useState(0);
-  const [addToCartDisabled, setAddToCartDisabled] = React.useState(true);
+  const { addToBasket } = useGlobalContext();
+  const [quantity, setQuantity] = useState(0);
+  const [addToCartDisabled, setAddToCartDisabled] = useState(true);
   const handleChangeCount = (value: number) => {
     setQuantity(value);
     if (value > 0) {
@@ -58,7 +45,7 @@ export const ProductCard = ({
       setAddToCartDisabled(true);
     }
   };
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

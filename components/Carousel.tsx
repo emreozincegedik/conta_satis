@@ -1,5 +1,3 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -51,21 +49,14 @@ export const Carousel = ({ images, imgPath }: any) => {
               >
                 <Image
                   src={`${imgPath}/${image}`}
-                  alt="Image"
+                  alt={`${imgPath}`}
                   fill
                   sizes="100%"
                   style={{ objectFit: "contain" }}
                   priority={true}
-                  // objectFit="contain"
                 />
               </div>
             </CardMedia>
-            {/* <Image
-              src="/images/Pump Cup Leathers for 1 Pint Stoves/1.jpeg"
-              alt={"img alt"}
-              width="100"
-              height="200"
-            /> */}
           </SwiperSlide>
         ))}
       </Swiper>

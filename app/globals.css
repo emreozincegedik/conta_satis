@@ -132,3 +132,24 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* .name .details{
+  color: #969696;
+}
+.name h1{
+font-family:'Montserrat';
+font-size: 40px;
+margin:0px;
+letter-spacing: 2px;
+color:#000000;
+}
+#main{
+  background-size: 1150px !important;
+  
+}
+.name{
+  left: 50%;
+  top: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+} */
