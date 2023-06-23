@@ -24,7 +24,7 @@ export default function RootLayout({
             <Script src="https://www.paytr.com/js/iframeResizer.min.js"></Script>
             <Navbar />
             {children}
-            <FloatingWhatsapp />
+            {/* <FloatingWhatsapp /> */}
           </body>
         </html>
       </GlobalContextProvider>
