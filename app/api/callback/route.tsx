@@ -20,7 +20,6 @@ export async function POST(request: Request) {
   //     // veri tabanınızdan ilgili siparişi tespit edip onaylamalı veya iptal etmelisiniz.
   //     // 3) Aynı sipariş için birden fazla bildirim ulaşabilir (Ağ bağlantı sorunları vb. nedeniyle). Bu nedenle öncelikle
   //     // siparişin durumunu veri tabanınızdan kontrol edin, eğer onaylandıysa tekrar işlem yapmayın. Örneği aşağıda bulunmaktadır.
-  var title = "paytr request";
 
   // try {
   // var text2 = form;
@@ -43,9 +42,7 @@ export async function POST(request: Request) {
 
   // return new NextResponse("OK");
   var paytr_token = merchant_oid + merchant_salt + status + total_amount;
-  var text = merchant_oid + " " + status + " " + total_amount + " " + hash;
-  var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
-  await fetch(url);
+
   //     var callback = await request.json();
   //     // console.log(callback);
   //     var merchant_id = "366809";
@@ -70,11 +67,22 @@ export async function POST(request: Request) {
     throw new Error("PAYTR notification failed: bad hash");
   }
 
+  var text = merchant_oid + " " + status + " " + total_amount + " " + hash;
+  var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
   if (status == "success") {
     //basarili
+    var title = "paytr request success";
   } else {
+    var title =
+      "paytr request fail: " +
+      (callback.get("failed_reason_msg") || "") +
+      " " +
+      (callback.get("failed_reason_code") || "") +
+      " " +
+      (callback.get("failed_reason") || ""); //"paytr request fail
     //basarisiz
   }
+  await fetch(url);
   return new NextResponse("OK");
   //   } catch (error: any) {
   //     // title = "payment error";

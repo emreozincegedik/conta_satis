@@ -38,7 +38,7 @@ const ContactMePage = () => {
             </ListItemIcon>
             <ListItemText
               primary="Address"
-              secondary="123 Main Street, City, State, Country"
+              secondary="Menteş mh. 2570 sk Greenland sit C block, floor 4, no:10 Yenişehir/Mersin Turkey"
             />
           </ListItem>
         </List>
