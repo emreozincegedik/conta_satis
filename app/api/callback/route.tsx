@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
+import { NextApiRequest } from "next";
 var x = 1;
-export async function POST(request: NextRequest) {
+export async function POST(request: NextApiRequest) {
   const JOIN_API_KEY = "552ca49562ad4e888a8050b2e829513d";
   const deviceId = "77ddb3e749424e2095f56e47e20ea373";
 
@@ -15,27 +16,18 @@ export async function POST(request: NextRequest) {
     var title = "paytr request";
 
     try {
+      var text = "callback1: " + request.body;
+    } catch (error3) {
       var text =
-        "callback3: " + JSON.parse(await request.formData().toString());
-    } catch (error) {
-      try {
-        var text = "callback2 await failed: " + (await request.text());
-      } catch (error2) {
-        try {
-          var text = "callback1: " + JSON.stringify(await request.json());
-        } catch (error3) {
-          var text =
-            "callback4 body empty. headers: " +
-            JSON.stringify(await request.headers);
-        }
-      }
+        "callback4 body empty. headers: " +
+        JSON.stringify(await request.headers);
     }
 
     var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
     await fetch(url);
     return new NextResponse("OK");
 
-    var callback = await request.json();
+    /*var callback = await request.json();
     // console.log(callback);
     var merchant_id = "366809";
     var merchant_key = "Erbj6JS1L7514Krx";
@@ -64,7 +56,7 @@ export async function POST(request: NextRequest) {
     // } else {
     //   //basarisiz
     // }
-    return new NextResponse("OK");
+    return new NextResponse("OK");*/
   } catch (error: any) {
     // title = "payment error";
     // text = error.toString();
