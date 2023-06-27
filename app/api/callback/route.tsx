@@ -15,14 +15,18 @@ export async function POST(request: NextRequest) {
     var title = "paytr request";
 
     try {
-      var text = "callback: " + JSON.stringify(await request.json());
+      var text = "callback1: " + JSON.stringify(await request.json());
     } catch (error) {
       try {
-        var text = "callback await failed: " + (await request.text());
+        var text = "callback2 await failed: " + (await request.text());
       } catch (error2) {
-        var text =
-          "callback body empty. headers: " +
-          JSON.stringify(await request.headers);
+        try {
+          var text = "callback3: " + (await request.formData());
+        } catch (error3) {
+          var text =
+            "callback4 body empty. headers: " +
+            JSON.stringify(await request.headers);
+        }
       }
     }
 
