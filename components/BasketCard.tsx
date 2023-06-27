@@ -36,7 +36,7 @@ export function BasketCard(item: ItemsDetail) {
         alt={`${item.images ? item.images[0] : null}`}
       />
 
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="div" variant="h5">
             {item.title}

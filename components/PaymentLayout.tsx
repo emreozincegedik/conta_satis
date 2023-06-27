@@ -28,6 +28,7 @@ export const PaymentLayout = () => {
     phone,
     setIframetoken2,
     totalPayment,
+    basketPayment,
     otherCountry,
   } = useGlobalContext();
   const router = useRouter();
@@ -127,13 +128,48 @@ export const PaymentLayout = () => {
             </Step>
           ))}
         </Stepper>
-        <div>total payment: ${totalPayment()}</div>
+
         <div>
           <>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
               {/* Step {activeStep + 1} of 3 */}
               {activeStep === 0 ? <Basket /> : <PersonalDetail />}
             </Typography>
+            <Box
+              sx={{
+                flex: "1",
+                flexDirection: "column",
+                alignContent: "flex-end",
+                justifyContent: "flex-end",
+                justifyItems: "flex-end",
+                display: "flex",
+              }}
+            >
+              <Box
+                sx={{
+                  flex: "1",
+                  alignSelf: "flex-end",
+                }}
+              >
+                basket: ${basketPayment()}
+              </Box>
+              <Box
+                sx={{
+                  flex: "1",
+                  alignSelf: "flex-end",
+                }}
+              >
+                shipment: ${country?.price || 0}
+              </Box>
+              <Box
+                sx={{
+                  flex: "1",
+                  alignSelf: "flex-end",
+                }}
+              >
+                total payment: ${totalPayment()}
+              </Box>
+            </Box>
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
                 color="inherit"

@@ -7,6 +7,7 @@ import items from "@/utils/items.json";
 import countries from "@/utils/countries.json";
 import { Country } from "@/interfaces/Country";
 interface IGlobalContextProps {
+  basketPayment: () => number;
   otherCountry: string;
   setOtherCountry: (country: string) => void;
   totalPayment: () => number;
@@ -33,6 +34,7 @@ interface IGlobalContextProps {
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
+  basketPayment: () => 0,
   otherCountry: "",
   setOtherCountry: () => {},
   totalPayment: () => 0,
@@ -98,6 +100,22 @@ export const GlobalContextProvider = (props: any) => {
     }
     return amount;
   };
+  const basketPayment = () => {
+    var x = basket;
+    var amount = 0;
+    var user_basket = [];
+    for (let i = 0; i < x.length; i++) {
+      const basketItem = x[i];
+      for (let j = 0; j < items.length; j++) {
+        const item = items[j];
+        if (basketItem.id == item.id) {
+          amount += basketItem.quantity * item.price;
+          user_basket.push([item.title, item.price, basketItem.quantity]);
+        }
+      }
+    }
+    return amount;
+  };
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -113,6 +131,7 @@ export const GlobalContextProvider = (props: any) => {
   return (
     <GlobalContext.Provider
       value={{
+        basketPayment: basketPayment,
         otherCountry: otherCountry,
         setOtherCountry: setOtherCountry,
         totalPayment: totalPayment,

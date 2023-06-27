@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { Button, Fade, TextField } from "@mui/material";
 import { Carousel } from "@/components/Carousel";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
-import { AddShoppingCart, AddCircle } from "@mui/icons-material";
+import { AddShoppingCart, AddCircle, RemoveCircle } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
@@ -80,6 +80,24 @@ export const ProductCard = ({
             component="h2"
             sx={{ display: "flex", flexDirection: "row" }}
           >
+            <Button
+              sx={{
+                marginBottom: "0.65em",
+                marginTop: "1.15em",
+                marginRight: "0.5em",
+                color: "red",
+              }}
+              disabled={quantity <= 1 ? true : false}
+              onClick={() => {
+                if (quantity <= 1) {
+                  return;
+                }
+                setQuantity(quantity - 1);
+              }}
+              variant="text"
+            >
+              <RemoveCircle />
+            </Button>
             <TextField
               margin="normal"
               required
@@ -88,6 +106,13 @@ export const ProductCard = ({
               label="Quantity"
               name="quantity"
               autoComplete="quantity"
+              sx={{
+                flex: 1,
+                justifyContent: "center",
+                justifyItems: "center",
+                justifySelf: "center",
+                alignSelf: "center",
+              }}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -98,6 +123,19 @@ export const ProductCard = ({
               }}
               value={quantity}
             />
+            <Button
+              sx={{
+                marginBottom: "0.65em",
+                marginTop: "1.15em",
+                marginRight: "0.5em",
+              }}
+              variant="text"
+              onClick={() => {
+                setQuantity(quantity + 1);
+              }}
+            >
+              <AddCircle />
+            </Button>
             <Button
               variant="contained"
               sx={{

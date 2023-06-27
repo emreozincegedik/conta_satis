@@ -1,18 +1,26 @@
 [
     {
         "label": "Turkey",
-        "price": 10
+        "price": 1
     },
     {
-        "label": "Germany",
-        "price": 15
+        "label": "Europe (Incl. UK)",
+        "price": 6
     },
     {
         "label": "USA",
-        "price": 200
+        "price": 9
     },
     {
-        "label": "Other",
-        "price": 100
+        "label": "Canada",
+        "price": 8
+    },
+    {
+        "label": "New Zeeland",
+        "price": 8
+    },
+    {
+        "label": "Rest of the World",
+        "price": 10
     }
 ]

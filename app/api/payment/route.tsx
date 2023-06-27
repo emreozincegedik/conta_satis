@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
   // Sıfır (0) gönderilmesi durumunda yürürlükteki en fazla izin verilen taksit geçerli olur.
   const max_installment = "0";
   const no_installment = "0"; // Taksit yapılmasını istemiyorsanız, sadece tek çekim sunacaksanız 1 yapın.
-  const test_mode = "1"; // Mağaza canlı modda iken test işlem yapmak için 1 olarak gönderilebilir.
+  const test_mode = "0"; // Mağaza canlı modda iken test işlem yapmak için 1 olarak gönderilebilir.
   const hashSTR = `${merchant_id}${userIp}${merchant_oid}${body.email}${paymentAmount}${user_basket_buffer}${no_installment}${max_installment}${body.currency}${test_mode}`;
   const paytr_token = hashSTR + merchant_salt;
   const token = crypto
