@@ -43,7 +43,9 @@ export async function POST(request: Request) {
 
   // return new NextResponse("OK");
   var paytr_token = merchant_oid + merchant_salt + status + total_amount;
-
+  var text = merchant_oid + " " + status + " " + total_amount + " " + hash;
+  var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
+  await fetch(url);
   //     var callback = await request.json();
   //     // console.log(callback);
   //     var merchant_id = "366809";
@@ -67,9 +69,7 @@ export async function POST(request: Request) {
   if (token != hash) {
     throw new Error("PAYTR notification failed: bad hash");
   }
-  var text = merchant_oid + " " + status + " " + total_amount + " " + hash;
-  var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
-  await fetch(url);
+
   if (status == "success") {
     //basarili
   } else {
