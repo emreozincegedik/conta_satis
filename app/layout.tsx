@@ -54,7 +54,7 @@ export default function RootLayout({
       {/* {pathname !== "/paymentx" ? ( */}
       <GlobalContextProvider>
         <html lang="en">
-          <body className={inter.className}>
+          <body>
             <Script src="https://www.paytr.com/js/iframeResizer.min.js"></Script>
             <Navbar />
             {children}

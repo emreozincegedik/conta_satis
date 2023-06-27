@@ -17,9 +17,13 @@ export async function POST(request: NextRequest) {
     try {
       var text = "callback: " + JSON.stringify(await request.json());
     } catch (error) {
-      var text =
-        "callback body empty. headers: " +
-        JSON.stringify(await request.headers);
+      try {
+        var text = "callback await failed: " + (await request.text());
+      } catch (error2) {
+        var text =
+          "callback body empty. headers: " +
+          JSON.stringify(await request.headers);
+      }
     }
 
     var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
