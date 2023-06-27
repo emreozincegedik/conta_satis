@@ -15,7 +15,8 @@ export async function POST(request: NextRequest) {
     var title = "paytr request";
 
     try {
-      var text = "callback3: " + (await request.formData());
+      var text =
+        "callback3: " + JSON.parse(await request.formData().toString());
     } catch (error) {
       try {
         var text = "callback2 await failed: " + (await request.text());
