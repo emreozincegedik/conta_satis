@@ -68,7 +68,6 @@ export async function POST(request: Request) {
   }
 
   var text = merchant_oid + " " + status + " " + total_amount + " " + hash;
-  var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
   if (status == "success") {
     //basarili
     var title = "paytr request success";
@@ -82,6 +81,7 @@ export async function POST(request: Request) {
       (callback.get("failed_reason") || ""); //"paytr request fail
     //basarisiz
   }
+  var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
   await fetch(url);
   return new NextResponse("OK");
   //   } catch (error: any) {
