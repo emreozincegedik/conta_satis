@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
   const merchant_id = process.env.merchant_id;
   const merchant_key = process.env.merchant_key;
   const merchant_salt = process.env.merchant_salt;
+  const currency = "USD";
   // Başarılı ödeme sonrası müşterinizin yönlendirileceği sayfa
   // Bu sayfa siparişi onaylayacağınız sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
   const merchant_ok_url = "https://www.sefaudi.com/payment_success"; //odeme_basarili.php";
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest) {
   const max_installment = "0";
   const no_installment = "0"; // Taksit yapılmasını istemiyorsanız, sadece tek çekim sunacaksanız 1 yapın.
   const test_mode = "0"; // Mağaza canlı modda iken test işlem yapmak için 1 olarak gönderilebilir.
-  const hashSTR = `${merchant_id}${userIp}${merchant_oid}${body.email}${paymentAmount}${user_basket_buffer}${no_installment}${max_installment}${body.currency}${test_mode}`;
+  const hashSTR = `${merchant_id}${userIp}${merchant_oid}${body.email}${paymentAmount}${user_basket_buffer}${no_installment}${max_installment}${currency}${test_mode}`;
   const paytr_token = hashSTR + merchant_salt;
   const token = crypto
     .createHmac("sha256", merchant_key || "")
@@ -83,7 +84,7 @@ export async function POST(request: NextRequest) {
   formData.lang = body.lang;
   formData.no_installment = no_installment;
   formData.max_installment = max_installment;
-  formData.currency = body.currency;
+  formData.currency = currency;
   formData.paytr_token = token;
 
   var formBody = [];
