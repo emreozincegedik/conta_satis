@@ -5,6 +5,9 @@ var x = 1;
 // export default function handler(req: any, res: any) {
 //   res.status(200).json({ name: "John Doe" });
 // }
+const merchant_id = process.env.merchant_id;
+const merchant_key = process.env.merchant_key || "";
+const merchant_salt = process.env.merchant_salt || "";
 export async function POST(request: Request) {
   var callback = await request.formData();
   const JOIN_API_KEY = "552ca49562ad4e888a8050b2e829513d";
@@ -21,10 +24,10 @@ export async function POST(request: Request) {
 
   // try {
   // var text2 = form;
-  var text = callback.get("merchant_oid");
-  var status = callback.get("status");
-  var total_amount = callback.get("total_amount");
-  var hash = callback.get("hash");
+  var merchant_oid = callback.get("merchant_oid") || "";
+  var status = callback.get("status") || "";
+  var total_amount = callback.get("total_amount") || "";
+  var hash = callback.get("hash") || "";
   //     } catch (error) {
   //       // try {
   //       //   var text = "callback2 await failed: " + (await request.body());
@@ -37,10 +40,9 @@ export async function POST(request: Request) {
   //   //         // }
   //   //       }
   // }
-  text = text + " " + status + " " + total_amount + " " + hash;
-  var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
-  await fetch(url);
-  return new NextResponse("OK");
+
+  // return new NextResponse("OK");
+  var paytr_token = merchant_oid + merchant_salt + status + total_amount;
 
   //     var callback = await request.json();
   //     // console.log(callback);
@@ -54,24 +56,26 @@ export async function POST(request: Request) {
   //       callback.status +
   //       callback.total_amount;
   //     // console.log(paytr_token);
-  //     var token = crypto
-  //       .createHmac("sha256", merchant_key)
-  //       .update(paytr_token)
-  //       .digest("base64");
+  var token = crypto
+    .createHmac("sha256", merchant_key)
+    .update(paytr_token)
+    .digest("base64");
   //     // console.log("here");
   //     // Oluşturulan hash'i, paytr'dan gelen post içindeki hash ile karşılaştır (isteğin paytr'dan geldiğine ve değişmediğine emin olmak için)
   //     // Bu işlemi yapmazsanız maddi zarara uğramanız olasıdır.
 
-  //     // if (token != callback.hash) {
-  //     //   throw new Error("PAYTR notification failed: bad hash");
-  //     // }
-
-  //     // if (callback.status == "success") {
-  //     //   //basarili
-  //     // } else {
-  //     //   //basarisiz
-  //     // }
-  //     return new NextResponse("OK");
+  if (token != hash) {
+    throw new Error("PAYTR notification failed: bad hash");
+  }
+  var text = merchant_oid + " " + status + " " + total_amount + " " + hash;
+  var url = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=${JOIN_API_KEY}&text=${text}&title=${title}&deviceId=${deviceId}`;
+  await fetch(url);
+  if (status == "success") {
+    //basarili
+  } else {
+    //basarisiz
+  }
+  return new NextResponse("OK");
   //   } catch (error: any) {
   //     // title = "payment error";
   //     // text = error.toString();
