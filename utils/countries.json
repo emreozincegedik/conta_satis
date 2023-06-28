@@ -4,12 +4,48 @@
         "price": 1
     },
     {
-        "label": "Europe (Incl. UK)",
-        "price": 6
+        "label": "Austria",
+        "price": 7
+    },
+    {
+        "label": "Belgium",
+        "price": 7
+    },
+    {
+        "label": "Denmark",
+        "price": 7
+    },
+    {
+        "label": "Finland",
+        "price": 7
+    },
+    {
+        "label": "France",
+        "price": 7
+    },
+    {
+        "label": "Germany",
+        "price": 7
+    },
+    {
+        "label": "Italy",
+        "price": 7
+    },
+    {
+        "label": "Netherlands",
+        "price": 7
+    },
+    {
+        "label": "Sweden",
+        "price": 7
     },
     {
         "label": "United Kingdom",
-        "price": 6
+        "price": 7
+    },
+    {
+        "label": "Australia",
+        "price": 9
     },
     {
         "label": "USA",
@@ -17,14 +53,18 @@
     },
     {
         "label": "Canada",
-        "price": 8
+        "price": 9
+    },
+    {
+        "label": "Japan",
+        "price": 9
     },
     {
         "label": "New Zeeland",
-        "price": 8
+        "price": 9
     },
     {
-        "label": "Rest of the World",
+        "label": "Other",
         "price": 10
     }
 ]
