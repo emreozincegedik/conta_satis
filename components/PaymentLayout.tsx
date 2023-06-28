@@ -20,6 +20,10 @@ import { Payment } from "./Payment";
 
 export const PaymentLayout = () => {
   const {
+    address2,
+    city,
+    province,
+    postalCode,
     basket,
     totalItemsInBasket,
     country,
@@ -57,7 +61,11 @@ export const PaymentLayout = () => {
       username == "" ||
       address == "" ||
       email == "" ||
-      phone == ""
+      phone == "" ||
+      // address2 == "" ||
+      city == "" ||
+      province == "" ||
+      postalCode == ""
     ) {
       return false;
     }
@@ -76,7 +84,18 @@ export const PaymentLayout = () => {
         formData: {
           email: email,
           user_name: username,
-          user_address: address,
+          user_address:
+            "Adres: '" +
+            address +
+            " " +
+            address2 +
+            "' Şehir: '" +
+            city +
+            "' Province:" +
+            province +
+            " Posta Kodu: '" +
+            postalCode +
+            "'",
           user_phone: phone,
           user_basket: basket,
           country: country,

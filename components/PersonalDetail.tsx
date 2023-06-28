@@ -13,6 +13,14 @@ import { Country } from "@/interfaces/Country";
 import countriesJson from "@/utils/countries.json";
 export const PersonalDetail = () => {
   const {
+    address2,
+    setAddress2,
+    postalCode,
+    setPostalCode,
+    province,
+    setProvince,
+    city,
+    setCity,
     username,
     setUsername,
     address,
@@ -30,7 +38,7 @@ export const PersonalDetail = () => {
   const countries: Country[] = countriesJson;
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       {/* <CssBaseline /> */}
       <Box
         sx={{
@@ -75,21 +83,66 @@ export const PersonalDetail = () => {
                 required
                 fullWidth
                 name="phone"
-                label="Phone"
+                label="Phone (with country code)"
                 id="phone"
                 onChange={(e) => setPhone(e.target.value)}
                 value={phone}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="address"
+                label="Address line"
+                id="address"
+                onChange={(e) => setAddress(e.target.value)}
+                value={address}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                // required
+                fullWidth
+                name="address"
+                label="Address line 2"
+                id="address"
+                onChange={(e) => setAddress2(e.target.value)}
+                value={address2}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                required
+                fullWidth
+                name="city"
+                label="City"
+                id="city"
+                onChange={(e) => setCity(e.target.value)}
+                value={city}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                required
+                fullWidth
+                name="province"
+                label="Province"
+                id="province"
+                onChange={(e) => setProvince(e.target.value)}
+                value={province}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 required
                 fullWidth
-                name="address"
-                label="Address"
-                id="address"
-                onChange={(e) => setAddress(e.target.value)}
-                value={address}
+                name="postalCode"
+                label="Postal Code"
+                id="postalCode"
+                onChange={(e) => setPostalCode(e.target.value)}
+                value={postalCode}
               />
             </Grid>
             <Grid item xs={12}>
@@ -121,6 +174,7 @@ export const PersonalDetail = () => {
                 )}
               />
             </Grid>
+
             {country && country.label === "Other" && (
               <Grid item xs={12}>
                 <TextField

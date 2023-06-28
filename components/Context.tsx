@@ -7,6 +7,14 @@ import items from "@/utils/items.json";
 import countries from "@/utils/countries.json";
 import { Country } from "@/interfaces/Country";
 interface IGlobalContextProps {
+  setPostalCode: (postalCode: string) => void;
+  postalCode: string;
+  setProvince: (province: string) => void;
+  province: string;
+  setCity: (city: string) => void;
+  city: string;
+  setAddress2: (address: string) => void;
+  address2: string;
   basketPayment: () => number;
   otherCountry: string;
   setOtherCountry: (country: string) => void;
@@ -34,6 +42,14 @@ interface IGlobalContextProps {
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
+  setPostalCode: () => {},
+  postalCode: "",
+  setProvince: () => {},
+  province: "",
+  setCity: () => {},
+  city: "",
+  setAddress2: () => {},
+  address2: "",
   basketPayment: () => 0,
   otherCountry: "",
   setOtherCountry: () => {},
@@ -71,6 +87,10 @@ export const GlobalContextProvider = (props: any) => {
   const [country, setCountry] = useState<Country | null>(null);
   const [iframetoken2, setIframetoken2] = useState<string>("");
   const [otherCountry, setOtherCountry] = useState<string>("");
+  const [postalCode, setPostalCode] = useState<string>("");
+  const [province, setProvince] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [address2, setAddress2] = useState<string>("");
   const toggleColorMode = () => {
     setThemeMode(themeMode === "light" ? "dark" : "light");
   };
@@ -131,6 +151,14 @@ export const GlobalContextProvider = (props: any) => {
   return (
     <GlobalContext.Provider
       value={{
+        setPostalCode: setPostalCode,
+        postalCode: postalCode,
+        setProvince: setProvince,
+        province: province,
+        setCity: setCity,
+        city: city,
+        setAddress2: setAddress2,
+        address2: address2,
         basketPayment: basketPayment,
         otherCountry: otherCountry,
         setOtherCountry: setOtherCountry,
