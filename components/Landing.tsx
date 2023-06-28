@@ -7,7 +7,7 @@ const landingPageStyles = {
     // flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    minHeight: "60vh",
+    minHeight: "30vh",
     backgroundColor: "#3f51b5",
     color: "#fff",
     padding: "24px",
@@ -37,7 +37,7 @@ export const Landing = () => {
         component="p"
         style={landingPageStyles.description}
       >
-        Upgrade your pump&apos;s performance with our high-quality pump cups.
+        Upgrade your pressure item with our high-quality leather pump cups.
       </Typography>
     </div>
   );

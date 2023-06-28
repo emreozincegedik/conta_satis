@@ -11,11 +11,12 @@ import {
 } from "@mui/material";
 import { Basket } from "./Basket";
 import { PersonalDetail } from "./PersonalDetail";
-const steps = ["Basket", "Personal Details"];
+const steps = ["Basket", "Personal Details", "Payment"];
 import { useGlobalContext } from "@/components/Context";
 import { useRouter } from "next/navigation";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
+import { Payment } from "./Payment";
 
 export const PaymentLayout = () => {
   const {
@@ -44,7 +45,7 @@ export const PaymentLayout = () => {
   };
 
   const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
+    return activeStep === totalSteps() - 2;
   };
 
   //payment button enabled when all steps are completed
@@ -94,7 +95,11 @@ export const PaymentLayout = () => {
         var data = await res.json();
         console.log(data);
         setIframetoken2(data.token);
-        router.push("/payment");
+        newActiveStep++;
+        setActiveStep(newActiveStep);
+        setLoading(false);
+
+        // router.push("/payment");
         // console.log(data);
       } catch (error) {
         console.log("oh nooo", error);
@@ -122,7 +127,11 @@ export const PaymentLayout = () => {
         <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
-              <StepButton color="inherit" onClick={handleStep(index)}>
+              <StepButton
+                color="inherit"
+                onClick={handleStep(index)}
+                disabled={index == 2}
+              >
                 {label}
               </StepButton>
             </Step>
@@ -133,7 +142,13 @@ export const PaymentLayout = () => {
           <>
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
               {/* Step {activeStep + 1} of 3 */}
-              {activeStep === 0 ? <Basket /> : <PersonalDetail />}
+              {activeStep === 0 ? (
+                <Basket />
+              ) : activeStep == 1 ? (
+                <PersonalDetail />
+              ) : (
+                <Payment />
+              )}
             </Typography>
             <Box
               sx={{
@@ -172,7 +187,8 @@ export const PaymentLayout = () => {
             </Box>
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
-                color="inherit"
+                variant="contained"
+                // color="inherit"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 sx={{ mr: 1 }}
@@ -187,19 +203,25 @@ export const PaymentLayout = () => {
                   startIcon={<SaveIcon />}
                   // variant="outlined"
                 >
-                  Redirecting to payment page...
+                  Processing...
                 </LoadingButton>
               ) : (
                 <Button
+                  variant="contained"
                   onClick={handleNext}
-                  disabled={!allStepsCompleted() && activeStep === 1}
+                  disabled={
+                    (!allStepsCompleted() && activeStep === 1) ||
+                    activeStep === 2
+                  }
                   sx={{ mr: 1 }}
                 >
-                  {activeStep === 1
+                  {activeStep === 0
+                    ? "Proceed to Personal Details"
+                    : activeStep === 1
                     ? allStepsCompleted()
-                      ? "Go To Payment"
+                      ? "Checkout"
                       : "Fill basket and shipment details"
-                    : "Next"}
+                    : "In payment page"}
                 </Button>
               )}
             </Box>

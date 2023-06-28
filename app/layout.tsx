@@ -6,9 +6,11 @@ import { GlobalContextProvider } from "@/components/Context";
 
 const inter = Inter({ subsets: ["latin"] });
 import Script from "next/script";
-export const metadata = {
+import { Metadata } from "next";
+export const metadata: Metadata = {
   title: "Sefaudi",
   description: "Sefa Udi Store",
+
   authors: [{ name: "Emre Özincegedik" }, { name: "Sefa Özincegedik" }],
   keywords: [
     "Sefa",
@@ -19,12 +21,25 @@ export const metadata = {
     "Pump Cups",
     "Pump",
     "Cups",
+    "leather",
+    "leather pump cups",
     "PumpCups",
     "Pump Cups",
     "PumpCups.com",
     "sefaudi.com",
     "ozincegedik",
     "conta",
+    "leather pump cup",
+    "leather pump cup set",
+    "leather pump cup set price",
+    "leather pump cup price",
+    "pump cup leather",
+    "pump cup leather set",
+    "pump cup leather set price",
+    "pump cup leather price",
+    "pump cup set leather",
+    "pump cup set leather price",
+    "pump cup set leather set",
     "pump cup set",
     "pump cup set price",
     "gas stove pump cup",

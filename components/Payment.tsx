@@ -1,12 +1,18 @@
 "use client";
 import Script from "next/script";
 import { useGlobalContext } from "./Context";
+import { useEffect, useState, useRef } from "react";
 
 export const Payment = () => {
   const { iframetoken2 } = useGlobalContext();
-
+  const [height, setHeight] = useState("50vh");
+  useEffect(() => {
+    setTimeout(() => {
+      setHeight("70vh");
+    }, 800);
+  }, []);
   return (
-    <div>
+    <div style={{ height: height }}>
       {iframetoken2 !== "" && (
         <>
           <iframe
@@ -16,11 +22,11 @@ export const Payment = () => {
             allowFullScreen={true}
             frameBorder={0}
             scrolling="yes"
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: height }}
           ></iframe>
-          <Script id="#paytriframe">
+          {/* <Script id="#paytriframe">
             {"iFrameResize({}, '#paytriframe')"}
-          </Script>
+          </Script> */}
         </>
       )}
     </div>

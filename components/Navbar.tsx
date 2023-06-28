@@ -13,6 +13,7 @@ import {
   Badge,
   Slide,
   CssBaseline,
+  Tooltip,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -95,7 +96,6 @@ export const Navbar = (props: any) => {
               >
                 <Home fontSize="large" /> Home
               </Typography>
-
               <Box sx={{ display: { xs: "flex", md: "none" } }}>
                 <IconButton
                   size="large"
@@ -149,23 +149,25 @@ export const Navbar = (props: any) => {
                   },
                 }}
               >
-                <IconButton
-                  sx={{
-                    my: 2,
-                    color: "green",
-                    backgroundColor: "white",
-                    transition: "all 0.3s ease",
-                    width: {
-                      xs: `calc(100% - ${theme.spacing(2) + 1000}px)`, // reduce width by 20px on xs breakpoint
-                      md: "100%",
-                    },
-                  }}
-                  onClick={() =>
-                    window.open("http://wa.me/905322256457/?text=Hello Sefa")
-                  }
-                >
-                  <WhatsApp />
-                </IconButton>
+                <Tooltip title="Whatsapp">
+                  <IconButton
+                    sx={{
+                      my: 2,
+                      color: "green",
+                      backgroundColor: "white",
+                      transition: "all 0.3s ease",
+                      width: {
+                        xs: `calc(100% - ${theme.spacing(2) + 1000}px)`, // reduce width by 20px on xs breakpoint
+                        md: "100%",
+                      },
+                    }}
+                    onClick={() =>
+                      window.open("http://wa.me/905322256457/?text=Hello Sefa")
+                    }
+                  >
+                    <WhatsApp />
+                  </IconButton>
+                </Tooltip>
               </Box>
               {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
               <Box
@@ -196,7 +198,6 @@ export const Navbar = (props: any) => {
                   <Home fontSize="large" />
                 </IconButton>
               </Box>
-
               <Box
                 justifyContent="space-evenly"
                 sx={{
@@ -215,7 +216,6 @@ export const Navbar = (props: any) => {
                   </Button>
                 ))}
               </Box>
-
               <IconButton
                 sx={{
                   my: 2,
