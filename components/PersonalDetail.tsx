@@ -154,6 +154,7 @@ export const PersonalDetail = () => {
                 }}
                 inputValue={countryValue}
                 options={countries}
+                groupBy={(countries) => "Shipment: $" + countries.price}
                 getOptionLabel={(option) => option.label}
                 value={country}
                 onChange={(event: any, newValue: Country | null) => {
@@ -166,7 +167,7 @@ export const PersonalDetail = () => {
                     sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
                     {...props}
                   >
-                    {option.label} (${option.price})
+                    {option.label} {/* (${option.price}) */}
                   </Box>
                 )}
                 renderInput={(params: any) => (
