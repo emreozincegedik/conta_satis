@@ -156,6 +156,10 @@ export const Navbar = (props: any) => {
                       color: "green",
                       backgroundColor: "white",
                       transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#939393",
+                        color: "green",
+                      },
                       width: {
                         xs: `calc(100% - ${theme.spacing(2) + 1000}px)`, // reduce width by 20px on xs breakpoint
                         md: "100%",

@@ -1,4 +1,6 @@
 "use client";
+
+import React from "react";
 import {
   Typography,
   Paper,
@@ -9,7 +11,13 @@ import {
   Container,
   CssBaseline,
 } from "@mui/material";
-import { Phone, Email, LocationOn, Person } from "@mui/icons-material";
+import {
+  Phone,
+  Email,
+  LocationOn,
+  Person,
+  WhatsApp,
+} from "@mui/icons-material";
 
 const ContactMePage = () => {
   return (
@@ -17,43 +25,61 @@ const ContactMePage = () => {
       sx={{
         padding: "4vh",
         minHeight: "95vh",
-        paddingTop: "48px",
-        // display: "flex",
-        // alignItems: "center",
-        // justifyContent: "center",
-        // background: "#f5f5f5",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#f5f5f5",
       }}
     >
-      <Container component="main" maxWidth="xs" sx={{ pt: 8, pb: 8 }}>
+      <Container component="main" maxWidth="xs" sx={{ textAlign: "center" }}>
         <CssBaseline />
         <Typography variant="h4" component="h1" gutterBottom>
           Contact Me
         </Typography>
-        <List>
-          <ListItem>
+        <List sx={{ pl: "2vw" }}>
+          <ListItem
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <ListItemIcon>
               <Person />
             </ListItemIcon>
-
             <ListItemText primary="Sefa Özincegedik" secondary="" />
           </ListItem>
-          <ListItem>
+          <ListItem
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <ListItemIcon>
-              <Phone />
+              <WhatsApp />
             </ListItemIcon>
-
-            <ListItemText
-              primary="Phone (Whatsapp)"
-              secondary="+90 532 225 64 57"
-            />
+            <ListItemText primary="Whatsapp" secondary="+90 532 225 64 57" />
           </ListItem>
-          <ListItem>
+          <ListItem
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <ListItemIcon>
               <Email />
             </ListItemIcon>
             <ListItemText primary="Email" secondary="ozincegedik@gmail.com" />
           </ListItem>
-          {/* <ListItem>
+          {/* <ListItem
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             <ListItemIcon>
               <LocationOn />
             </ListItemIcon>
