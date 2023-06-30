@@ -92,6 +92,8 @@ export const Navbar = (props: any) => {
                   fontWeight: 700,
                   color: "inherit",
                   textDecoration: "none",
+                  transition: "all 0.3s ease",
+                  ":hover": { color: "black" },
                 }}
               >
                 <Home fontSize="large" /> Home
@@ -213,7 +215,13 @@ export const Navbar = (props: any) => {
                   <Button
                     key={i}
                     // onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      transition: "all 0.3s ease",
+                      ":hover": { color: "black" },
+                    }}
                     onClick={() => router.push(page.href)}
                   >
                     {page.displayName}
