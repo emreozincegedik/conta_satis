@@ -7,6 +7,7 @@ import { GlobalContextProvider } from "@/components/Context";
 const inter = Inter({ subsets: ["latin"] });
 import Script from "next/script";
 import { Metadata } from "next";
+import Head from "next/head";
 export const metadata: Metadata = {
   title: "Sefaudi",
   description: "Sefa Udi Store",
@@ -69,12 +70,6 @@ export default function RootLayout({
       {/* {pathname !== "/paymentx" ? ( */}
       <GlobalContextProvider>
         <html lang="en">
-          <body>
-            <Script src="https://www.paytr.com/js/iframeResizer.min.js"></Script>
-            <Navbar />
-            {children}
-            {/* <FloatingWhatsapp /> */}
-          </body>
           <Script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-JXYQDS45J4"
@@ -90,6 +85,12 @@ export default function RootLayout({
                     gtag('config', 'G-JXYQDS45J4');`,
             }}
           ></Script>
+          <body>
+            <Script src="https://www.paytr.com/js/iframeResizer.min.js"></Script>
+            <Navbar />
+            {children}
+            {/* <FloatingWhatsapp /> */}
+          </body>
         </html>
       </GlobalContextProvider>
       {/* ) : (
