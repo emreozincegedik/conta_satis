@@ -75,6 +75,21 @@ export default function RootLayout({
             {children}
             {/* <FloatingWhatsapp /> */}
           </body>
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-JXYQDS45J4"
+          ></Script>
+          <Script
+            id="gtag"
+            dangerouslySetInnerHTML={{
+              __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    
+                    gtag('config', 'G-JXYQDS45J4');`,
+            }}
+          ></Script>
         </html>
       </GlobalContextProvider>
       {/* ) : (
