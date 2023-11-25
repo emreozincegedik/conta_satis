@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
 export const Items = ({ itemsJson }: any) => {
   return (
-    <Container sx={{ py: 6 }} maxWidth="lg">
+    <Container sx={{ py: 6, background: "white" }} maxWidth="lg">
       <Grid container spacing={6}>
         {itemsJson.map((card: ItemsDetail, i: number) => (
           <Grid item key={i} xs={12} sm={6} md={6} lg={4}>

@@ -60,7 +60,7 @@ function HideOnScroll(props: Props) {
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 export const Navbar = (props: any) => {
   const router = useRouter();
-  const theme = useTheme();
+  // const theme = useTheme();
   const { totalItemsInBasket } = useGlobalContext();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   // const [user, setUser] = React.useState<null | string>(username);
@@ -163,7 +163,7 @@ export const Navbar = (props: any) => {
                         color: "green",
                       },
                       width: {
-                        xs: `calc(100% - ${theme.spacing(2) + 1000}px)`, // reduce width by 20px on xs breakpoint
+                        xs: `calc(100% - ${1000}px)`, // reduce width by 20px on xs breakpoint
                         md: "100%",
                       },
                     }}

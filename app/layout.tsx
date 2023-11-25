@@ -4,10 +4,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { GlobalContextProvider } from "@/components/Context";
 
-const inter = Inter({ subsets: ["latin"] });
 import Script from "next/script";
 import { Metadata } from "next";
-import Head from "next/head";
 export const metadata: Metadata = {
   title: "Sefaudi",
   description: "Sefa Udi Store",
