@@ -163,7 +163,7 @@ export const Navbar = (props: any) => {
                         color: "green",
                       },
                       width: {
-                        xs: `calc(100% - ${1000}px)`, // reduce width by 20px on xs breakpoint
+                        xs: `calc(100%)`, // reduce width by 20px on xs breakpoint
                         md: "100%",
                       },
                     }}
