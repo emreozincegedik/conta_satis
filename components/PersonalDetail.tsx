@@ -76,7 +76,6 @@ export const PersonalDetail = () => {
                 fullWidth
                 id="lastName"
                 label="Surname"
-                autoFocus
                 onChange={(e) => setUsersurname(e.target.value)}
                 value={usersurname}
               />
