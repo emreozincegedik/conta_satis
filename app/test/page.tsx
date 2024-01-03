@@ -35,26 +35,10 @@ export default function Page() {
 
   return (
     <div style={useStyles.phoneInputContainer}>
-      <TextField
-        label="Phone Number"
-        variant="outlined"
-        value={phone}
-        onChange={handlePhoneChange}
-      />
-      <TextField
-        select
-        style={useStyles.countrySelect}
-        label="Country"
-        variant="outlined"
-        value={country}
-        onChange={handleCountryChange}
-      >
-        {countries.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
+      <h1>
+
+      How did you get here this is a test page!
+      </h1>
     </div>
   );
 }
