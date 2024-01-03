@@ -23,6 +23,8 @@ export const PersonalDetail = () => {
     setCity,
     username,
     setUsername,
+    usersurname,
+    setUsersurname,
     address,
     setAddress,
     country,
@@ -53,17 +55,30 @@ export const PersonalDetail = () => {
         </Typography>
         <Box component="form" noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={6} sm={6}>
               <TextField
                 autoComplete="given-name"
                 name="firstName"
                 required
                 fullWidth
                 id="firstName"
-                label="Name and Surname"
+                label="Name"
                 autoFocus
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
+              />
+            </Grid>
+            <Grid item xs={6} sm={6}>
+              <TextField
+                autoComplete="given-surname"
+                name="lastName"
+                required
+                fullWidth
+                id="lastName"
+                label="Surname"
+                autoFocus
+                onChange={(e) => setUsersurname(e.target.value)}
+                value={usersurname}
               />
             </Grid>
             <Grid item xs={12}>

@@ -30,6 +30,8 @@ interface IGlobalContextProps {
   username: string;
   errorPage: boolean;
   setUsername: (user: string) => void;
+  usersurname:string;
+  setUsersurname:(user:string)=>void;
   setErrorPage: (state: boolean) => void;
   email: string;
   setEmail: (email: string) => void;
@@ -65,6 +67,8 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
   username: "",
   errorPage: false,
   setUsername: () => {},
+  usersurname:"",
+  setUsersurname:()=>{},
   setErrorPage: () => {},
   email: "",
   setEmail: () => {},
@@ -78,6 +82,7 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
 
 export const GlobalContextProvider = (props: any) => {
   const [username, setUsername] = useState<string>("");
+  const [usersurname, setUsersurname] = useState<string>("");
   const [themeMode, setThemeMode] = useState<"light" | "dark">("light");
   const [errorPage, setErrorPage] = useState(false);
   const [basket, setBasket] = useState<BasketItem[]>([]);
@@ -197,6 +202,8 @@ export const GlobalContextProvider = (props: any) => {
         toggleColorMode: toggleColorMode,
         username: username,
         setUsername: setUsername,
+        usersurname:usersurname,
+        setUsersurname:setUsersurname,
         setErrorPage: setErrorPage,
         errorPage: errorPage,
         email: email,

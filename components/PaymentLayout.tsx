@@ -28,6 +28,7 @@ export const PaymentLayout = () => {
     totalItemsInBasket,
     country,
     username,
+    usersurname,
     address,
     email,
     phone,
@@ -59,6 +60,7 @@ export const PaymentLayout = () => {
       country == null ||
       (otherCountry == "" && country.label == "Other") ||
       username == "" ||
+      usersurname == "" ||
       address == "" ||
       email == "" ||
       phone == "" ||
@@ -83,7 +85,7 @@ export const PaymentLayout = () => {
         headers: { "content-type": "application/x-www-form-urlencoded" },
         formData: {
           email: email,
-          user_name: username,
+          user_name: username + " " + usersurname,
           user_address:
             "Adres: '" +
             address +
