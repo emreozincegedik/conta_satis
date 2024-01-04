@@ -3,7 +3,7 @@ import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button, Fade, TextField } from "@mui/material";
+import { Button, CardActionArea, Fade, TextField } from "@mui/material";
 import { Carousel } from "@/components/Carousel";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
 import { AddShoppingCart, AddCircle, RemoveCircle } from "@mui/icons-material";
@@ -12,6 +12,7 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import { useGlobalContext } from "@/components/Context";
 import { parse } from "path";
+import { useRouter } from "next/navigation";
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -35,7 +36,7 @@ export const ProductCard = ({
   images,
   imgPath,
 }: ItemsDetail) => {
-  const { basket, addToBasket } = useGlobalContext();
+  const { basket, addToBasket, setSnackbarState } = useGlobalContext();
   const [quantity, setQuantity] = useState(1);
 
   const [expanded, setExpanded] = useState(false);
@@ -45,35 +46,41 @@ export const ProductCard = ({
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const router = useRouter();
   return (
     <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <Carousel images={images} imgPath={imgPath} />
       <CardContent
         sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
       >
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          sx={{ flexGrow: !expanded ? 1 : 0 }}
+        <CardActionArea
+          onClick={() => {
+            router.push("/item/" + id);
+          }}
         >
-          {title || "Random title"}
-          <ExpandMore
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ flexGrow: !expanded ? 1 : 0 }}
+          >
+            {title || "Random title"}
+            {/* <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
           >
             <ExpandMoreIcon />
-          </ExpandMore>
-        </Typography>
-        <Fade in={expanded} unmountOnExit style={{ flexGrow: 1 }}>
-          <CardContent>{desc}</CardContent>
-        </Fade>
+          </ExpandMore> */}
+          </Typography>
+          <Fade in={expanded} unmountOnExit style={{ flexGrow: 1 }}>
+            <CardContent>{desc}</CardContent>
+          </Fade>
+        </CardActionArea>
         <Typography gutterBottom variant="h5" component="h2">
           ${price || "99.99"}
         </Typography>
-
         <Typography>
           <Typography
             variant="h6"
@@ -148,6 +155,7 @@ export const ProductCard = ({
                 // console.log("here item id: ", id, quantity);
                 setQuantity(0);
                 addToBasket({ id, quantity });
+                setSnackbarState(true);
               }}
             >
               {isInBasket() ? <AddCircle /> : <AddShoppingCart />}

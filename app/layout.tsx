@@ -6,6 +6,7 @@ import { GlobalContextProvider } from "@/components/Context";
 
 import Script from "next/script";
 import { Metadata } from "next";
+import { SnackbarMsg } from "@/components/SnackbarMsg";
 export const metadata: Metadata = {
   title: "Sefaudi",
   description: "Sefa Udi Store",
@@ -87,7 +88,8 @@ export default function RootLayout({
             <Script src="https://www.paytr.com/js/iframeResizer.min.js"></Script>
             <Navbar />
             {children}
-            {/* <FloatingWhatsapp /> */}
+            <FloatingWhatsapp />
+            <SnackbarMsg />
           </body>
         </html>
       </GlobalContextProvider>

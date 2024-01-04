@@ -30,8 +30,8 @@ interface IGlobalContextProps {
   username: string;
   errorPage: boolean;
   setUsername: (user: string) => void;
-  usersurname:string;
-  setUsersurname:(user:string)=>void;
+  usersurname: string;
+  setUsersurname: (user: string) => void;
   setErrorPage: (state: boolean) => void;
   email: string;
   setEmail: (email: string) => void;
@@ -41,6 +41,10 @@ interface IGlobalContextProps {
   setPhone: (phone: string) => void;
   country: Country | null;
   setCountry: (country: Country | null) => void;
+  snackbarState: boolean;
+  setSnackbarState: (state: boolean) => void;
+  snackbarMessage: string;
+  setSnackbarMessage: (message: string) => void;
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
@@ -67,8 +71,8 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
   username: "",
   errorPage: false,
   setUsername: () => {},
-  usersurname:"",
-  setUsersurname:()=>{},
+  usersurname: "",
+  setUsersurname: () => {},
   setErrorPage: () => {},
   email: "",
   setEmail: () => {},
@@ -78,6 +82,10 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
   setPhone: () => {},
   country: null,
   setCountry: () => {},
+  snackbarState: false,
+  setSnackbarState: () => {},
+  snackbarMessage: "",
+  setSnackbarMessage: () => {},
 });
 
 export const GlobalContextProvider = (props: any) => {
@@ -96,6 +104,10 @@ export const GlobalContextProvider = (props: any) => {
   const [province, setProvince] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [address2, setAddress2] = useState<string>("");
+  const [snackbarState, setSnackbarState] = useState<boolean>(false);
+  const [snackbarMessage, setSnackbarMessage] = useState<string>(
+    "Successfully added to basket!"
+  );
   const toggleColorMode = () => {
     setThemeMode(themeMode === "light" ? "dark" : "light");
   };
@@ -202,8 +214,8 @@ export const GlobalContextProvider = (props: any) => {
         toggleColorMode: toggleColorMode,
         username: username,
         setUsername: setUsername,
-        usersurname:usersurname,
-        setUsersurname:setUsersurname,
+        usersurname: usersurname,
+        setUsersurname: setUsersurname,
         setErrorPage: setErrorPage,
         errorPage: errorPage,
         email: email,
@@ -217,6 +229,10 @@ export const GlobalContextProvider = (props: any) => {
           console.log(e);
           setCountry(e);
         },
+        snackbarState: snackbarState,
+        setSnackbarState: setSnackbarState,
+        snackbarMessage: snackbarMessage,
+        setSnackbarMessage: setSnackbarMessage,
       }}
     >
       <ThemeProvider theme={theme}>

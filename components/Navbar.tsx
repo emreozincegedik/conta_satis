@@ -143,38 +143,7 @@ export const Navbar = (props: any) => {
                 ))}
               </Menu>
             </Box>
-            <Box
-              sx={{
-                display: {
-                  md: 0,
-                  xs: 1,
-                },
-              }}
-            >
-              <Tooltip title="Whatsapp">
-                <IconButton
-                  sx={{
-                    my: 2,
-                    color: "green",
-                    backgroundColor: "white",
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      backgroundColor: "#939393",
-                      color: "green",
-                    },
-                    width: {
-                      xs: `calc(100%)`, // reduce width by 20px on xs breakpoint
-                      md: "100%",
-                    },
-                  }}
-                  onClick={() =>
-                    window.open("http://wa.me/905322256457/?text=Hello Sefa")
-                  }
-                >
-                  <WhatsApp />
-                </IconButton>
-              </Tooltip>
-            </Box>
+
             {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
             <Box
               sx={{
@@ -205,7 +174,7 @@ export const Navbar = (props: any) => {
               </IconButton>
             </Box>
             <Box
-              justifyContent="space-evenly"
+              justifyContent="start"
               sx={{
                 flexGrow: 1,
                 display: { xs: "none", md: "flex", lg: "flex" },
@@ -228,6 +197,38 @@ export const Navbar = (props: any) => {
                 </Button>
               ))}
             </Box>
+            {/* <Box
+              sx={{
+                display: {
+                  md: 0,
+                  xs: 1,
+                },
+              }}
+            >
+              <Tooltip title="Whatsapp">
+                <IconButton
+                  sx={{
+                    my: 2,
+                    color: "green",
+                    backgroundColor: "white",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      backgroundColor: "#939393",
+                      color: "green",
+                    },
+                    width: {
+                      xs: `calc(100%)`, // reduce width by 20px on xs breakpoint
+                      md: "100%",
+                    },
+                  }}
+                  onClick={() =>
+                    window.open("http://wa.me/905322256457/?text=Hello Sefa")
+                  }
+                >
+                  <WhatsApp />
+                </IconButton>
+              </Tooltip>
+            </Box> */}
             <IconButton
               sx={{
                 my: 2,

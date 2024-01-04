@@ -11,8 +11,10 @@ export const FloatingWhatsapp = () => {
         zIndex: 1000,
         color: "green",
         backgroundColor: "white",
+        transition: " 0.3s ease-in-out",
         "&:hover": {
-          backgroundColor: "white",
+          backgroundColor: "green",
+          color: "white",
         },
       }}
       aria-label="add"
