@@ -4,7 +4,6 @@ import { AddCircle, AddShoppingCart, RemoveCircle } from "@mui/icons-material";
 import { Button, TextField, Typography } from "@mui/material";
 import { useGlobalContext } from "./Context";
 import { useState } from "react";
-import { SnackbarProvider, VariantType, useSnackbar } from "notistack";
 
 interface Props {
   id: number;

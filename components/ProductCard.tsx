@@ -3,7 +3,13 @@ import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, Fade, TextField } from "@mui/material";
+import {
+  Button,
+  CardActionArea,
+  Fade,
+  TextField,
+  Tooltip,
+} from "@mui/material";
 import { Carousel } from "@/components/Carousel";
 import { ItemsDetail } from "@/interfaces/ItemsDetail";
 import { AddShoppingCart, AddCircle, RemoveCircle } from "@mui/icons-material";
@@ -58,14 +64,15 @@ export const ProductCard = ({
             router.push("/item/" + id);
           }}
         >
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: !expanded ? 1 : 0 }}
-          >
-            {title || "Random title"}
-            {/* <ExpandMore
+          <Tooltip title="Learn more about this item" arrow>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{ flexGrow: !expanded ? 1 : 0 }}
+            >
+              {title || "Random title"}
+              {/* <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
@@ -73,11 +80,13 @@ export const ProductCard = ({
           >
             <ExpandMoreIcon />
           </ExpandMore> */}
-          </Typography>
+            </Typography>
+          </Tooltip>
           <Fade in={expanded} unmountOnExit style={{ flexGrow: 1 }}>
             <CardContent>{desc}</CardContent>
           </Fade>
         </CardActionArea>
+
         <Typography gutterBottom variant="h5" component="h2">
           ${price || "99.99"}
         </Typography>
