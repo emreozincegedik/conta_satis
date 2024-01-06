@@ -55,7 +55,6 @@ export const AddToBasketOptions = ({ id }: Props) => {
         InputLabelProps={{
           shrink: true,
         }}
-        autoFocus
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           console.log(e.target.value, "asd", parseInt(e.target.value));
           setQuantity(parseInt(e.target.value));
