@@ -35,12 +35,21 @@ export async function POST(request: NextRequest) {
   const merchant_key = process.env.merchant_key;
   const merchant_salt = process.env.merchant_salt;
   const currency = "USD";
+  let merchant_ok_url = "";
+  let merchant_fail_url = "";
   // Başarılı ödeme sonrası müşterinizin yönlendirileceği sayfa
   // Bu sayfa siparişi onaylayacağınız sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
-  const merchant_ok_url = "https://www.sefaudi.com/payment_success"; //odeme_basarili.php";
-  // Ödeme sürecinde beklenmedik bir hata oluşması durumunda müşterinizin yönlendirileceği sayfa
-  // Bu sayfa siparişi iptal edeceğiniz sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
-  const merchant_fail_url = "https://www.sefaudi.com/payment_fail";
+  if (body.website === 0) {
+    merchant_ok_url = "https://www.sefaudi.com/payment_success"; //odeme_basarili.php";
+    // Ödeme sürecinde beklenmedik bir hata oluşması durumunda müşterinizin yönlendirileceği sayfa
+    // Bu sayfa siparişi iptal edeceğiniz sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
+    merchant_fail_url = "https://www.sefaudi.com/payment_fail";
+  } else {
+    merchant_ok_url = "https://www.google.com"; //odeme_basarili.php";
+    // Ödeme sürecinde beklenmedik bir hata oluşması durumunda müşterinizin yönlendirileceği sayfa
+    // Bu sayfa siparişi iptal edeceğiniz sayfa değildir! Yalnızca müşterinizi bilgilendireceğiniz sayfadır!
+    merchant_fail_url = "https://www.duckduckgo.com";
+  }
   const timeout_limit = 30; // İşlem zaman aşımı süresi - dakika cinsinden
   const debug_on = 1; // Hata mesajlarının ekrana basılması için entegrasyon ve test sürecinde 1 olarak bırakın. Daha sonra 0 yapabilirsiniz.
   const merchant_oid = "IN" + Date.now();

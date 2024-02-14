@@ -1,5 +1,4 @@
-"use client";
-import { useState } from "react";
+"use client";import { useState } from "react";
 import {
   Container,
   Typography,
@@ -104,6 +103,7 @@ export const PaymentLayout = () => {
           lang: "en",
           currency: "TL",
           other_country: otherCountry,
+          website: 0,
         },
       };
       setLoading(true);
