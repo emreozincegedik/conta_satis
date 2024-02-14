@@ -1,5 +1,4 @@
-import { NextResponse, NextRequest } from "next/server";
-import crypto from "crypto";
+import { NextResponse, NextRequest } from "next/server";import crypto from "crypto";
 import items from "@/utils/items.json";
 import countries from "@/utils/countries.json";
 export async function POST(request: NextRequest) {
@@ -8,15 +7,20 @@ export async function POST(request: NextRequest) {
   var x = body.user_basket;
   var amount = 0;
   var user_basket = [];
-  for (let i = 0; i < x.length; i++) {
-    const basketItem = x[i];
-    for (let j = 0; j < items.length; j++) {
-      const item = items[j];
-      if (basketItem.id == item.id) {
-        amount += basketItem.quantity * item.price;
-        user_basket.push([item.title, item.price, basketItem.quantity]);
+  if (body.website === 0) {
+    for (let i = 0; i < x.length; i++) {
+      const basketItem = x[i];
+      for (let j = 0; j < items.length; j++) {
+        const item = items[j];
+        if (basketItem.id == item.id) {
+          amount += basketItem.quantity * item.price;
+          user_basket.push([item.title, item.price, basketItem.quantity]);
+        }
       }
     }
+  } else {
+    user_basket.push(["test", 1, 1]);
+    amount = 1;
   }
   var user_basket_buffer = Buffer.from(JSON.stringify(user_basket)).toString(
     "base64"
