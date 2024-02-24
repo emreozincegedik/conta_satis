@@ -1,10 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";import crypto from "crypto";
 import items from "@/utils/items.json";
 import countries from "@/utils/countries.json";
+
+import { db } from "@/db";
+import { BasketItem } from "@/interfaces/BasketItem";
+
 export async function POST(request: NextRequest) {
   const body = await request.json();
-
-  var x = body.user_basket;
+  console.log(body);
+  var x: BasketItem[] = body.user_basket;
   var amount = 0;
   var user_basket = [];
   if (body.website === 0) {
@@ -19,8 +23,26 @@ export async function POST(request: NextRequest) {
       }
     }
   } else {
-    user_basket.push(["test", 1, 1]);
-    amount = 1;
+    const products = await db.product.findMany({
+      where: {
+        id: {
+          in: x.map((product) => product.id),
+        },
+      },
+    });
+    console.log(products);
+    for (let i = 0; i < x.length; i++) {
+      const basketItem = x[i];
+      for (let j = 0; j < products.length; j++) {
+        const product = products[j];
+        if (basketItem.id == product.id) {
+          amount += basketItem.quantity * product.price;
+          user_basket.push([product.name, product.price, basketItem.quantity]);
+        }
+      }
+    }
+    // user_basket.push(["test", 1, 1]);
+    // amount += 1;
   }
   var user_basket_buffer = Buffer.from(JSON.stringify(user_basket)).toString(
     "base64"

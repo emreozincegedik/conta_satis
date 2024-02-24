@@ -1,0 +1,89 @@
+// Don't forget to tell Prisma about your edits to this file using
+// `yarn rw prisma migrate dev` or `yarn rw prisma db push`.
+// `migrate` is like committing while `push` is for prototyping.
+// Read more about both here:
+// https://www.prisma.io/docs/orm/prisma-migrate
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = "native"
+}
+
+// Define your own datamodels here and run `yarn redwood prisma migrate dev`
+// to create migrations for them and apply to your dev DB.
+// TODO: Please remove the following example:
+model User {
+  id                  Int        @id @default(autoincrement())
+  username            String     @unique
+  name                String?
+  hashedPassword      String // <─┐
+  salt                String // <─┼─ add these lines
+  resetToken          String? // <─┤
+  resetTokenExpiresAt DateTime? // <─┘
+  userRoles           UserRole[]
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+  Product             Product[]
+}
+
+model UserRole {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  name      Role
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
+
+  @@unique([name, userId])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Product {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  images      Image[]
+  user        User         @relation(fields: [userId], references: [id])
+  userId      Int          @default(2)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  width       Float?
+  height      Float?
+  depth       Float?
+  weight      Float?
+  CargoPrice  CargoPrice[]
+}
+
+model CargoPrice {
+  id        Int      @id @default(autoincrement())
+  price     Float
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  label     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Image {
+  id        Int      @id @default(autoincrement())
+  url       String
+  title     String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  order     Int      @default(0)
+  color     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, order, color], name: "unique_product_order_color")
+}
