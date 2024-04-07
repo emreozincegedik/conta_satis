@@ -1,113 +1,128 @@
 [
-	{
-		"id": 1,
-		"title": "Pump Cup Leathers for 2 Pint Stoves",
-		"desc": [
-			"Outer diameter is 17-18 mm. These pump cups fit most of 2 pint stoves, lanterns and blowtorches such as Optimus 1S, Optimus 5, Optimus 45, Primus 5, Svea 5, Svea 106, Radius 17, Optimus 200, Optimus 300, Optimus 930, Primus 1020, Primus981, Primus 991, Primus 1321, Primus 632, Radius 119, Radius 103, Bialaddin 305, Bialaddin 310, Bialaddin 315, Bialaddin Bowlfire, Vapalux 320, M320, Petromax 250, Petromax 350, Petromax 500, Hasag, Sievert, Maxim, Barthel 501, Barthel 100, Barthel 296 etc."
-		],
-		"price": 2,
-		"imgPath": "/images/Pump Cup Leathers for 2 Pint Stoves",
-		"images": [
-			"1.jpeg",
-			"2.jpeg",
-			"3.jpeg",
-			"4.jpeg",
-			"5.jpeg"
-		]
-	},
-	{
-		"id": 2,
-		"title": "Pump Cup Leathers for 1 Pint Stoves",
-		"desc": [
-			"Outer diameter is 13-14 mm.These pump cups fit most of 1 pint stoves such as Optimus 111 hiker, Primus 96, Burmos 21, Primus 22, Primus 210, Radius 21 etc."
-		],
-		"price": 2,
-		"imgPath": "/images/Pump Cup Leathers for 1 Pint Stoves",
-		"images": [
-			"1.jpeg",
-			"2.jpeg",
-			"3.jpeg",
-			"4.jpeg",
-			"5.jpeg"
-		]
-	},
-	{
-		"id": 3,
-		"title": "Pump Cup Leathers for Coleman Stoves & Lanterns",
-		"desc": [
-			"Pump cup leathers for Coleman lanterns and stoves. Photos are showing some Coleman items where these pump leathers perfectly fit. Get rid of the neoprene washers! Upgrade to leather!"
-		],
-		"price": 2,
-		"imgPath": "/images/Pump Cup Leathers for Coleman Stoves & Lanterns",
-		"images": [
-			"1.jpeg",
-			"2.jpeg",
-			"3.jpeg",
-			"4.jpeg",
-			"5.jpeg",
-			"6.jpeg",
-			"7.jpeg"
-		]
-	},
-	{
-		"id": 4,
-		"title": "Pump Cup Leathers for Tilley Lamps",
-		"desc": [
-			"Pump cup leathers for Tilley lanterns. Outer diameter is ~16 mm."
-		],
-		"price": 2,
-		"imgPath": "/images/Pump Cup Leathers for Tilley Lamps",
-		"images": [
-			"1.jpeg",
-			"2.jpeg",
-			"3.jpeg",
-			"4.jpeg",
-			"5.jpeg",
-			"6.jpeg",
-			"7.jpeg",
-			"8.jpeg",
-			"9.jpeg"
-		]
-	},
-	{
-		"id": 5,
-		"title": "Repair Kit for Enders Stoves",
-		"desc": [
-			"Repair kit for German Enders pressure stoves. Pump leathers have been newly produced identical to genuine design.This kit perfectly fits Enders 9060, 9060D, 9061, 9061D, 9065D, 9063 (baby)models.",
-			"Price covers 3 items together ie 1 pump leather, 1 large viton oring and 1 small viton oring."
-		],
-		"price": 6,
-		"imgPath": "/images/Repair Kit for Enders stoves",
-		"images": [
-			"1.jpeg",
-			"2.jpeg",
-			"3.jpeg",
-			"4.jpeg",
-			"5.jpeg",
-			"6.jpeg",
-			"7.jpeg",
-			"8.jpeg",
-			"9.jpeg"
-		]
-	},
-	{
-		"id": 6,
-		"title": "Pump cup leathers for Optimus Nova Trangia Primus Ergo Pump",
-		"desc": [
-			"Excellent pump cup leathers for Optimus Nova, Nova +, Trangia stoves and Primus ErgoPumps. ",
-			"Outer diameter is ~13 mm."
-		],
-		"price": 2,
-		"imgPath": "/images/Pump cup leathers for Optimus Nova Trangia Primus Ergo Pump",
-		"images": [
-			"1.jpeg",
-			"2.jpeg",
-			"3.jpeg",
-			"4.jpeg",
-			"5.jpeg",
-			"6.jpeg",
-			"7.jpeg",
-			"8.jpeg"
-		]
-	}
+  {
+    "id": 1,
+    "title": "Pump Cup Leathers for 2 Pint Stoves",
+    "desc": [
+      "Excellent pump cup leathers for most of pressure stoves  and lanterns. ",
+
+      "They are completely new, unused and produced from premium quality real leather.",
+
+      "Long life, super elasticity, perfect fitness, excellent sealing..",
+
+      "Outer diameter is 17-18 mm.",
+
+      "These pump cups fit most of 2 pint stoves, lanterns and blowtorches such as Optimus 1S, Optimus 5, Optimus 45, Primus 5, Svea 5, Svea 106, Radius 17, Optimus 200, Optimus 300, Optimus 930, Primus 1020, Primus981, Primus 991, Primus 1321, Primus 632, Radius 119, Radius 103, Bialaddin 305, Bialaddin 310, Bialaddin 315, Bialaddin Bowlfire, Vapalux 320, M320, Petromax 250, Petromax 350, Petromax 500, Hasag, Sievert, Maxim, Barthel 501, Barthel 100, Barthel 296 etc."
+    ],
+    "price": 2,
+    "imgPath": "/images/Pump Cup Leathers for 2 Pint Stoves",
+    "images": ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg"]
+  },
+  {
+    "id": 2,
+    "title": "Pump Cup Leathers for 1 Pint Stoves",
+    "desc": [
+      "pump cup leathers that are designed to fit 1 pint stoves and lanterns. These leathers are made from premium quality leather and are compatible with stove lantern blowtorches that use white gas or kerosene as fuel. Crafted with premium leather material, this accessory is of high quality and durability. These pump cup leathers are a must-have for any camping or hiking enthusiast who wants to ensure that their stove or lantern is performing at its best. With these leathers, you can rest assured that your stove or lantern will be functioning optimally without worrying about the condition of the item. These leathers are perfect for those who enjoy the great outdoors and want to have a reliable and efficient source of heat and light..... The best quality you can find ! Do not waste your time and money for poor qualities !",
+
+      "Outer diameter is 13-14 mm.",
+      "These pump cups fit most of 1 pint stoves such as Optimus 111 hiker, Primus 96, Burmos 21, Primus 22, Primus 210, Radius 21, Phoebus 625 and also Phoebus lanterns such as 611, 615 etc models."
+    ],
+    "price": 2,
+    "imgPath": "/images/Pump Cup Leathers for 1 Pint Stoves",
+    "images": ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg"]
+  },
+  {
+    "id": 3,
+    "title": "Pump Cup Leathers for Coleman Stoves & Lanterns",
+    "desc": [
+      "Identical to Coleman original part #216-5091",
+
+      "Enhance your camping experience with these special pump cup leather washers. Crafted with premium leather material, this stove/lantern accessory is of high quality and durability. It is designed to fit Coleman brand stoves & lanterns and can be used to replace worn-out pump cups and washers, ensuring the smooth and efficient performance of your pressure item. Ideal for camping, hiking, or any outdoor activity, this accessory is a must-have for any Colemans. Its compatibility with various Coleman lantern and stove models and its high-quality material make it a reliable and long-lasting investment. Elevate your outdoor experience!",
+
+      "Get rid of the neoprene washers! Upgrade to real leather!",
+
+      "Leather cup diameter is approximately 7/8\" (also referred to as 21mm) size."
+    ],
+    "price": 2,
+    "imgPath": "/images/Pump Cup Leathers for Coleman Stoves & Lanterns",
+    "images": [
+      "1.jpeg",
+      "2.jpeg",
+      "3.jpeg",
+      "4.jpeg",
+      "5.jpeg",
+      "6.jpeg",
+      "7.jpeg"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Pump Cup Leathers for Tilley Lamps",
+    "desc": [
+      "Enhance your camping experience with the Tillet lamp pump cup leather washer. Crafted with premium leather material, this lantern accessory is of high quality and durability. It is designed to fit Tilley brand lanterns and can be used to replace worn-out pump cups and washers, ensuring the smooth and efficient performance of your lantern. Ideal for camping, hiking, or any outdoor activity, this accessory is a must-have for any Tilley lantern owner. Its compatibility with various Tilley lantern models and its high-quality material make it a reliable and long-lasting investment. Elevate your outdoor experience! Outer diameter is ~16 mm."
+    ],
+    "price": 2,
+    "imgPath": "/images/Pump Cup Leathers for Tilley Lamps",
+    "images": [
+      "1.jpeg",
+      "2.jpeg",
+      "3.jpeg",
+      "4.jpeg",
+      "5.jpeg",
+      "6.jpeg",
+      "7.jpeg",
+      "8.jpeg",
+      "9.jpeg"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Repair Kit for Enders Stoves",
+    "desc": [
+      "Excellent pump cupleathers and sealing washers for German Enders pressure stoves.",
+
+      "Items are completely new, unused and produced from real leather.",
+
+      "Pump leathershave been newly produced identical to genuine design.",
+
+      "This kit perfectly fits Enders 9060, 9060D, 9061, 9061D, 9065D, 9063 (baby)models.You may be aware that these type of Enders brand stoves use pump leathers different from classical pump cups used on Swedish type conventional pressured stoves. These pump leathers are located between two metal plates. As you would see there is no pump piston on these type Enders stoves. Piston is self built on the leather. The sealing washers seen in the photos are made of viton, a special material resistant to fuel abrasion and high temperature. The large one is to be used onto the pump tube for sealing with the tank. The smaller one is to be used on pump rod, behind the pump cup. It gives good sealing while pushing the pump piston into the pump tube. ",
+      "Price covers 3 items together ie 1 pump leather, 1 large viton oring and 1 small viton oring."
+    ],
+    "price": 6,
+    "imgPath": "/images/Repair Kit for Enders stoves",
+    "images": [
+      "1.jpeg",
+      "2.jpeg",
+      "3.jpeg",
+      "4.jpeg",
+      "5.jpeg",
+      "6.jpeg",
+      "7.jpeg",
+      "8.jpeg",
+      "9.jpeg"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Pump cup leathers for Optimus Nova Trangia Primus Ergo Pump",
+    "desc": [
+      "Excellent pump cup leathers for Optimus Nova, Nova +, Trangia stoves and Primus ErgoPumps. ",
+      "They are completely new, unused and produced from premium quality real leather.",
+
+      "Long life, super elasticity, perfect fitness, excellent sealing..",
+
+      "Outer diameter is ~13 mm."
+    ],
+    "price": 2,
+    "imgPath": "/images/Pump cup leathers for Optimus Nova Trangia Primus Ergo Pump",
+    "images": [
+      "1.jpeg",
+      "2.jpeg",
+      "3.jpeg",
+      "4.jpeg",
+      "5.jpeg",
+      "6.jpeg",
+      "7.jpeg",
+      "8.jpeg"
+    ]
+  }
 ]

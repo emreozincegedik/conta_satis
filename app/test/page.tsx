@@ -3,6 +3,7 @@ import React from "react";
 import { makeStyles } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import Test from "@/components/Test";
 
 const useStyles = {
   phoneInputContainer: {
@@ -35,10 +36,7 @@ export default function Page() {
 
   return (
     <div style={useStyles.phoneInputContainer}>
-      <h1>
-
-      How did you get here this is a test page!
-      </h1>
+      <h1>How did you get here this is a test page!</h1>
     </div>
   );
 }
